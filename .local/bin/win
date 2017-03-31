@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Installation
+# 1. Create the image
+#    chattr +C .
+#    qemu-img create -f raw win10.raw 10G
+# 2. Download windows
+# 3. Download virtio
+#    aria2c https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/virtio-win.iso
+# 4. Installation
+#    qemu-system-x86_64 -enable-kvm -smp 2 -m 512M -vga qxl -net nic,if=virtio -boot order=d \
+#      -drive file=win10.img,index=0,media=disk,if=virtio,format=raw,cache=directsync,aio=native \
+#      -drive file=win10.iso,index=2,media=cdrom -drive file=virtio.iso,index=3,media=cdrom
+# 5. Drivers
+#    - E:\viostor\[your-os]\amd64
+#    - E:\Balloon
+#    - E:\qxldod
+#    - E:\NetKVM
+
+# Running
+# 1. Create new bridge
+#      sudo ip link add br0 type bridge
+# 1. Setup tap network
+#      sudo ip tuntap add dev tap0 mode tap
+# 2. Run dhcpcd
+#      sudo dhcpcd -B br0
+
+apulse32 qemu-system-x86_64 -enable-kvm -m 4096 -vga std -cpu host -smp 2 \
+  -net nic -net user,smb=$HOME -soundhw hda -balloon virtio \
+  -drive file=$HOME/act/img/win10.raw,format=raw,cache=none,if=virtio
+#qemu-system-x86_64 -enable-kvm -m 4096 -cpu host -smp 2 -balloon virtio \
+#  -net nic,model=virtio,vlan=0 -net user -soundhw hda -vga virtio -display sdl,gl=on \
+#  -drive file=$HOME/act/img/windows.raw,format=raw,cache=none,if=virtio
+
+#qemu-system-x86_64 --enable-kvm -smp 2 -m 512M -cpu host -boot order=d \
+#  -drive file=win10.raw,if=virtio,format=raw,index=0,media=disk,cache=directsync,aio=native \
+#  -drive file=/mnt/img/win10.iso,index=2,media=cdrom \
+#  -drive file=/mnt/img/virtio-win-0.1.130.iso,index=3,media=cdrom \
+#  -vga qxl -device virtio-serial-pci -spice unix,addr=/tmp/vm_spice.socket,disable-ticketing \
+#  -device virtserialport,chardev=spicechannel0,name=com.redhat.spice.0 \
+#  -chardev spicevmc,id=spicechannel0,name=vdagent
+#spicy --uri="spice+unix:///tmp/vm_spice.socket"

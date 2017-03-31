@@ -1,0 +1,105 @@
+# Base colors for mutt
+
+# -----------------------------------------------------------------------------
+# Basic Colors
+# -----------------------------------------------------------------------------
+#     name        foreground  background  pattern
+color normal      color07     color00
+color error       color01     color00
+color tilde       color02     color00
+color message     color07     color00
+color attachment  color00     color05
+color search      color15     color03
+color status      color07     color04
+color indicator   color15     color04
+color signature   color13     color00
+color tree        color12     color00                # arrow in threads
+#color progress    color03     color01
+
+# Index
+color index       color05     color00     ~N
+color index       color06     color00     ~O
+color index       color03     color00     ~P          # message is PGP encrypted
+color index       color07     color02     ~T
+color index       color07     color01     ~D
+color index       color03     color00     ~F          # flagged messages
+#color index       color20     color00     "~A"       # all messages
+#color index       color02     color00     "~S"       # message is signed and signature is verified
+#color index       color02     color00     "~v~(~F)"  # collapsed thread with some flagged
+#color index       color18     color02     "~T"       # tagged message
+
+# Header
+#color hdrdefault  color07     color00
+color header      color08     color00     "^(From)"
+color header      color06     color00     "^(Subject)"
+color header      color01     color00     "^(X-spam-rule|X-SpamProbe: SPAM)"
+
+# Body
+color normal      color07     color00
+#color underline   color20     color00
+color bold        color07     color00
+
+color quoted      color03     color00
+color quoted1     color02     color00
+color quoted2     color05     color00
+color quoted3     color06     color00
+color quoted4     color04     color00
+
+# PGP
+color body        color02     color00     "(Good signature)"
+color body        color02     color00     "^Good signature from.*"
+color body        color03     color00     "^gpg: "
+color body        color01     color00     "(BAD signature)"
+color body        color01     color00     "^BAD signature from.*"
+
+# -----------------------------------------------------------------------------
+# Black and White Terminal
+# -----------------------------------------------------------------------------
+# Basic
+#mono  bold        bold
+#mono  underline   underline
+#mono  indicator   reverse
+#mono  error       bold
+
+# Index
+#mono  index       bold                    "~N"
+#mono  index       bold                    "~F"
+#mono  index       bold                    "~T"
+#mono  index       bold                    "~D"
+
+# -----------------------------------------------------------------------------
+# Extras
+# -----------------------------------------------------------------------------
+# Colored emoji
+#color body        color10     color00     "[;:])"              # contented
+#color body        color11     color00     "[;:]\\|"            # sastifaction
+#color body        color09     color00     "[;:]\\("            # depression
+
+# Abbrevation
+#color body        color06     color00     "[*]?((N)?ACK|CU|LOL|SCNR|BRB|BTW|CWYL|\
+                                           |FWIW|vbg|GD&R|HTH|HTHBE|IMHO|IMNSHO|\
+                                           |IRL|RTFM|STFW|ROTFL|ROFL|YMMV)[*]?"
+#color body        color06     color00     "[ ][*][^*]*[*][ ]?" # more emoticon?
+#color body        color06     color00     "[ ]?[*][^*]*[*][ ]" # more emoticon?
+
+# *bold*, _underline_, and /italic/
+#color body        color01     color00     "(^| )\\*[^ ]+\\*( |$)"
+#color body        color01     color00     "(^| )_[^ ]+_( |$)"
+#color body        color01     color00     "(^| )/[^ ]+/( |$)"
+
+# Line breaks
+#color body        color19     color00     "( *[-+=#*~_]){6,}"
+
+# Patches
+color body        color1      color0       "^-[^\-].*"
+color body        color2      color0       "^[+][^+].*"
+color body        color6      color0       "^@@[\-+0-9, ]*@@"
+
+# Body url
+color body        color4      color0        "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+# body email
+color body        color4      color0        "((@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]),)*@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\.[0-9]?[0-9]?[0-9]\\]):)?[0-9a-z_.+%$-]+@(([0-9a-z-]+\\.)*[0-9a-z-]+\\.?|#[0-9]+|\\[[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\.[0-2]?[0-9]?[0-9]\\])"
+
+
+# vim: filetype=muttrc
+

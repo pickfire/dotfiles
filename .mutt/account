@@ -1,0 +1,30 @@
+#------------------------------------------------------------
+# Mutt -- Riseup account example
+#------------------------------------------------------------
+
+# Account
+set realname  = 'Foo Bar'
+set from      = foo@riseup.net
+alternates $from
+
+# Receive
+set imap_user = foo@riseup.net
+set imap_pass = "this is your password"
+set folder    = imaps://foo@mail.riseup.net/
+
+set spoolfile = +INBOX
+set postponed = +Drafts
+set record    = +Sent
+
+# Send
+set smtp_url  = smtps://$imap_user@smtp.riseup.net/
+set smtp_pass = $imap_pass
+
+# Connection
+set ssl_force_tls = yes
+set ssl_starttls = yes
+
+# Hook
+folder-hook $folder "source 'gpg -dq ~/.mutt/pass.gpg 2>/dev/null |'"
+
+# vim:ft=muttrc:

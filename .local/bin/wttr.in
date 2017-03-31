@@ -1,0 +1,4 @@
+#!/bin/sh
+# Simple weather checker using wttr.in
+
+curl -s wttr.in/${1:-"@pickfire.tk"} | head -7

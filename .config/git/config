@@ -1,0 +1,40 @@
+[user]
+	email = pickfire@riseup.net
+	name = Ivan Tham
+	signingkey = DBD0F842
+[alias]
+	lg = log --decorate --graph --all --oneline
+	ci = commit -v
+	st = status -sb
+[core]
+	editor = nvim
+[help]
+	autocorrect = 3
+[color]
+	ui = auto
+[credential]
+	helper = cache
+[column]
+	ui = auto
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.riseup.net
+	smtpUser = pickfire@riseup.net
+	smtpServerPort = 587
+	suppresscc = self
+[merge]
+	tool = vimdiff
+[diff]
+	tool = vimdiff
+[mergetool]
+	prompt = true
+[difftool]
+	prompt = false
+[mergetool "vimdiff"]
+	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[push]
+	default = simple
+[url "ssh://ivan@pickfire.tk:4121/srv/git/"]
+	insteadOf = home:
+#[url "http://"]
+#	insteadOf = git://

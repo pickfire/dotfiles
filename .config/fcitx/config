@@ -1,0 +1,18 @@
+[Hotkey]
+TriggerKey=SUPER_SPACE
+#ReloadConfig=CTRL_5
+
+[Program]
+#ShareStateAmongWindow=No # No/All/PerProgram
+#DefaultInputMethodState=Inactive # Active/Inactive
+
+[Output]
+#HalfPuncAfterNumber=True
+#RemindModeDisablePaging=True
+#SendTextWhenSwitchEng=True
+#CandidateWordNumber=5
+#PhraseTips=True
+#DontCommitPreeditWhenUnfocus=False
+
+[Appearance]
+#ShowInputSpeed=False

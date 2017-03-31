@@ -1,0 +1,124 @@
+[global]
+    font = Monospace 8
+    allow_markup = yes
+    format = "<b>%s %p</b>\n%b"
+    sort = yes
+    indicate_hidden = true
+    show_age_threshold = 60
+    geometry = "300x5-20+30"
+    alignment = left
+    sticky_history = yes
+    idle_threshold = 120
+    show_indicators = yes
+    monitor = 0
+    follow = mouse
+    word_wrap = yes
+    separator_height = 2
+    padding = 10
+    horizontal_padding = 10
+    separator_color = frame
+    startup_notification = false
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/firefox -newtab
+    icon_folders = /usr/share/icons/breeze/status/16:/usr/share/icons/breeze/devices/16
+
+
+[frame]
+    width = 3
+    color = "#222222"
+
+[shortcuts]
+    close = ctrl+space
+    close_all = ctrl+shift+space
+    history = ctrl+grave
+    context = ctrl+shift+period
+
+[urgency_low]
+    background = "#bbbbbb"
+    foreground = "#222222"
+    timeout = 10
+
+[urgency_normal]
+    background = "#005577"
+    foreground = "#eeeeee"
+    timeout = 15
+
+[urgency_critical]
+    background = "#ff0000"
+    foreground = "#222222"
+    timeout = 0
+
+
+[libpurple_signed]
+    appname = libpurple
+    summary = *igned*
+    urgency = low
+    timeout = 3
+    background = "#ccff33"
+
+[libpurple_came_back]
+    appname = libpurple
+    summary = "*came*"
+    format = ""
+
+[libpurple_went_away]
+    appname = libpurple
+    summary = "*went*"
+    format = ""
+
+[libpurple_says]
+    appname = libpurple
+    summary = *ays*
+    urgency = critical
+    background = "#ccff33"
+
+[libpurple]
+    appname = libpurple
+    urgency = critical
+    background = "#ccff33"
+
+[twitter]
+    appname = Pidgin
+    summary = *twitter.com*
+    urgency = low
+
+[turpial]
+    appname = Turpial
+    urgency = low
+
+[ttytter]
+    summary = "TTYtter*"
+    urgency = low
+
+[dunst-sum]
+    appname = gmailnotify.py
+    summary = "*[dD]unst*"
+    urgency = critical
+
+[dunst-body]
+    appname = gmailnotify.py
+    body = "*[dD]unst*"
+    urgency = critical
+
+[mcabber]
+    appname = notify-send
+    summary = "*jabber*"
+    urgency = critical
+
+[irc]
+    appname = weechat
+    timeout = 0
+    background = "#99FF33"
+    foreground = "#000000"
+
+[XChat]
+    appname = XChat
+    timeout = 0
+    background = "#99FF33"
+    foreground = "#000000"
+
+[test]
+    summary = "*test*"
+    background="#22dd22"
+
+# vim: ft=cfg

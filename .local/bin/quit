@@ -1,0 +1,11 @@
+#!/bin/sh
+# Simple dmenu xorg exit message
+
+boot() { sudo reboot; }
+lock() { xset dpms force off; xautolock -locknow; }
+quit() { pkill -f "Xorg $DISPLAY"; }
+shut() { sudo poweroff; }
+zzzz() { command -v zzz && sudo zzz || sudo suspend; }
+ZZZZ() { command -v ZZZ && sudo ZZZ || sudo hibernate; }
+
+$(grep \(\) $0 | cut -c-4 | dmenu)

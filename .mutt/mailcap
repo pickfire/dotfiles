@@ -1,0 +1,35 @@
+# Images
+image/jpg; sxiv %s
+image/jpeg; sxiv %s
+image/pjpeg; sxiv %s
+image/png; sxiv %s
+image/gif; sxiv %s
+
+# Multimedia
+audio/* ; /usr/bin/xdg-open %s
+video/* ; /usr/bin/xdg-open %s
+
+# PDFs
+application/pdf; zathura %s
+#application/pdf; pdftotext '%s' -; copiousoutput; description=PDF Document; nametemplate=%s.pdf
+
+# Text
+text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput;
+text/plain; cat %s; test=test "`echo %{charset} | tr '[A-Z]' '[a-z]'`" = utf-8 ; copiousoutput;
+
+# Office
+application/odt; libreoffice %s
+application/ods; libreoffice %s
+application/msword; libreoffice %s
+#application/msword; antiword '%s'; copiousoutput; description=Word Document; nametemplate=%s.doc
+application/vnd.oasis.opendocument.text; libreoffice %s
+
+# Compressed files
+application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
+application/x-gzip; gzcat; copiousoutput
+application/x-bzip2; bzcat; copiousoutput
+application/x-xz; xzcat; copiousoutput
+
+# Unidentified files
+application/octet-stream; xdg-open %s
+*/*; xdg-open %s

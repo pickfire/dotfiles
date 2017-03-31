@@ -1,0 +1,21 @@
+" Minimal nvimrc for mutt
+
+call plug#begin('~/.config/nvim/plugged/')
+Plug 'NLKNguyen/papercolor-theme'
+call plug#end()
+
+set shell=/bin/sh
+
+set showcmd
+set ruler
+set clipboard=unnamed
+
+set textwidth=72
+set colorcolumn=73
+
+set spell
+set nojoinspaces
+
+set background=light
+colorscheme PaperColor
+

@@ -1,0 +1,190 @@
+#============================================================
+#
+# ~/.mutt/muttrc - Mutt's basic configuration
+#
+# AUTHOR: Ivan Tham <pickfire@riseup.net>
+#
+# These are the folder assumed to exist:
+#     ~/.mutt/            | private, public stuff, etc.
+#     ~/.cache/mail/      | cache that make mutt faster
+#============================================================
+
+#------------------------------------------------------------
+# General
+#------------------------------------------------------------
+
+set editor       = "nvim -u ~/.mutt/nvimrc -c '+/^$' -c 'noh' +'norm o'"
+set ispell       = "/usr/bin/aspell -e -c" # use aspell as ispell
+set send_charset = "utf-8"    # utf-8 is the standard
+set mailcap_path = ~/.mutt/mailcap
+
+unset wait_key                # don't prompt for keypress
+unset record                  # don't save mail since it will be sync'd
+set beep_new                  # bell on new mails
+set sleep_time   = 0          # speed up folders switch
+
+set pipe_decode               # strip headers and eval mimes when piping
+set thorough_search           # strip headers and eval mimes before searching
+set text_flowed  = yes        # no hard breaks in quoted text
+
+# Gmail
+set sort         = threads
+set sort_aux     = last-date-received
+
+# Aliases
+#set alias_file   = ~/.mutt/alias
+#set reverse_alias
+#source $alias_file
+
+# Weeding (headers)
+ignore *
+unignore Date From To Cc Bcc Subject User-Agent
+
+# Saner format
+set status_format = "%r %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? \
+Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]---\
+(%s/%S)-%>-(%P)---"
+set index_format = "%4C %Z %{%b %d} %-15.15F (%?l?%4l&%4c?) %s"
+
+#------------------------------------------------------------
+# Receive
+#------------------------------------------------------------
+
+# Imap settings
+set timeout          = 15       # keep it active
+set imap_keepalive   = 150      # longer connection
+set mail_check       = 60       # minimum time between scans
+set mail_check_stats            # calculate message statistics
+unset imap_passive              # auto-open new imap connection
+
+# Type
+set imap_peek                   # gmail mark as read
+
+# Visual
+set mark_old                    # don't mark old after exit for unread
+unset markers                   # no ugly plus signs
+source ~/.mutt/colors           # base colors
+
+auto_view text/html             # view html automatically
+alternative_order text/plain text/enriched text/html # Pager View Options
+set quote_regexp     = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+
+# This will cost important disk usage according to your e-mail amount.
+set header_cache     = "~/.cache/mail/" #  Store message headers locally to
+set message_cachedir = "~/.cache/mail/" #+ speed things up.
+
+#------------------------------------------------------------
+# Compose
+#------------------------------------------------------------
+
+set fcc_attach                       # save attachments with the body
+set signature = "~/.mutt/sig/me" # add signature
+
+# Reply
+set reply_to                         # reply to Reply to: field
+set reverse_name                     # reply as whomever it was to
+set include                          # include message in replies
+set forward_quote                    # include message in forwards
+
+# Just send!
+set abort_nosubject  = no            # don't abort when no subject specified
+set abort_unmodified = no            # don't abort when unmodified
+
+# Visual
+set tilde                            # show tildes like in vim
+set smart_wrap                       # don't wrap mid-word
+
+# Headers
+set edit_headers = yes               # change the header of mail
+my_hdr User-Agent: Mutt
+
+# Return receipt
+set dsn_notify="failure,delay"       # notify if dalay or fail
+set dsn_return=hdrs                  # just show the header
+
+#------------------------------------------------------------
+# Security
+#------------------------------------------------------------
+
+# Accounts
+source "gpg -dq ~/.mutt/pass1.gpg 2>/dev/null |"
+source "gpg -dq ~/.mutt/pass3.gpg 2>/dev/null |"
+source "gpg -dq ~/.mutt/pass2.gpg 2>/dev/null |"
+
+macro index,pager <f2> '<sync-mailbox><enter-command>source "gpg -dq ~/.mutt/pass1.gpg 2>/dev/null |"<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source "gpg -dq ~/.mutt/pass2.gpg 2>/dev/null |"<enter><change-folder>!<enter>'
+macro index,pager <f4> '<sync-mailbox><enter-command>source "gpg -dq ~/.mutt/pass3.gpg 2>/dev/null |"<enter><change-folder>!<enter>'
+
+set certificate_file=~/.mutt/cert
+
+# GnuPG
+set crypt_use_gpgme          = yes
+set crypt_replysign          = yes
+set crypt_replysignencrypted = yes
+#source ~/.mutt/gpg.rc # use gpgme now
+
+# Goobook
+set query_command="goobook query '%s'"
+macro index,pager a "<pipe-message>goobook add<return>" "add sender to google contacts"
+bind editor <Tab> complete-query
+
+# Lists
+subscribe (techlab|trainees|hr)@cloudmails.apu.edu.my
+subscribe (dev|hackers|news|wiki)@suckless.org
+
+#------------------------------------------------------------
+# Sidebar
+#------------------------------------------------------------
+
+#set sidebar_visible
+#set ascii_chars                 # use ascii characters instead of utf-8
+set sidebar_divider_char  = ""
+set sidebar_width         = 20
+set sidebar_format        = '%B%?F? [%F]?%* %?N?%N/?%S'
+set sidebar_short_path             # Shorten mailbox names
+set sidebar_delim_chars   = "/"    # Delete everything up to the last /
+
+# Ctrl-n, Ctrl-p to select next, previous folder.
+# Ctrl-o to open selected folder.
+bind index,pager \Cp sidebar-prev
+bind index,pager \Cn sidebar-next
+bind index,pager \Co sidebar-open
+bind index,pager B sidebar-toggle-visible
+
+#------------------------------------------------------------
+# Vi Key Bindings
+#------------------------------------------------------------
+
+# Moving around
+bind browser,index       gg  first-entry
+bind browser,index       G   last-entry
+bind pager               gg  top
+bind pager               G   bottom
+bind pager               k   previous-line
+bind pager               j   next-line
+bind browser,pager,index \CF next-page
+bind browser,pager,index \CB previous-page
+bind browser,pager       \Ce next-line
+bind browser,pager       \Cy previous-line
+bind index               \Ce next-line
+bind index               \Cy previous-line
+
+#bind pager,index         D   delete-message
+
+# Mail & Reply
+#bind index               \Cl list-reply # Does not work ???
+
+# Threads
+#bind browser,pager,index N   search-opposite
+#bind pager,index         dT  delete-thread
+#bind pager,index         dt  delete-subthread
+#bind pager,index         gt  next-thread
+#bind pager,index         gT  previous-thread
+bind index               za  collapse-thread
+bind index               zA  collapse-all # Missing :folddisable/foldenable
+bind pager,index         gr  group-reply
+
+# View attachments properly.
+bind attach <return> view-mailcap
+
+# vim:ft=muttrc

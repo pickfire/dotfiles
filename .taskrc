@@ -1,0 +1,7 @@
+alias.rm=delete
+taskd.server=127.0.0.1:53589
+taskd.trust=ignore hostname
+taskd.key=\/home\/ivan\/.task\/ivan.key.pem
+taskd.certificate=\/home\/ivan\/.task\/ivan.cert.pem
+taskd.ca=\/home\/ivan\/.task\/ca.cert.pem
+taskd.credentials=warrior\/ivan\/66f4fdf9-5476-4daa-8f69-d835fe94b3fd

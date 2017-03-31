@@ -1,0 +1,13 @@
+#!/bin/sh
+# Webcam: Capture Image, Record Video, Record Audio
+# Usage: cam [-a no|-v no|-i frames]
+
+getopts a:v:i:h arg # Not sure how to shorten it
+case $arg in
+  a) echo "No audio support yet. :)"; exit 0;;
+  v) ffmpeg -f alsa -i $(arecord -L|grep default|head -n1) -f v4l2 -s 960x720 -i /dev/video0 ~/out.mkv;;
+  i) ffmpeg -f v4l2 -i /dev/video0 -frames $OPTARG ~/image%03d.jpg;;
+  h) echo "Usage: cam [-a no|-v no|-i frames]" && exit;;
+esac
+
+exit 0

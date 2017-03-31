@@ -1,0 +1,15 @@
+#!/bin/sh
+# Clean up unneeded files to save space
+
+# Locales
+ls -d /usr/lib/chromium/locales/* /usr/share/locale/*/ /usr/lib/locale/* \
+	| grep -vE '/(en|zh)' | xargs -- sudo rm -rf
+
+# Firmware [WIP]
+for i in nvidia amdgpu radeon ti-connectivity bnx2x mrvl ath10k; do
+	sudo rm -rf /usr/lib/firmware/$i
+done
+
+# Modules
+ls -d /usr/lib/modules/$(uname -r)/kernel/drivers/net/ethernet/* /usr/lib/modules/$(uname -r)/kernel/drivers/net/wireless/* \
+	| grep -vE 'intel|mediatek' | xargs -- sudo rm -rf
