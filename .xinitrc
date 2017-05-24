@@ -26,8 +26,10 @@ if [ $ID = 'void' ]; then
 elif [ $ID = 'alpine' ]; then
 	echo "No input methods yet!"
 elif [ $ID = 'arch' ]; then
+	#setxkbmap -layout 'us,us,us' -variant 'dvorak,dvp,' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
+	#exec startlxde
 	# Random wallpaper
-	qiv -zr ~/.config/wallpaper/* &
+	#qiv -zr ~/.config/wallpaper/* &
 
 	# Set qt configuration
 	#[ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] \
@@ -40,11 +42,15 @@ elif [ $ID = 'arch' ]; then
 	fcitx -r &
 
 	# ssh-agent
-	eval $(ssh-agent | tee ~/.ssh/env)
+	#eval $(ssh-agent | tee ~/.ssh/env)
 
 	# Use daemon processes to increase performance
-	pcmanfm --daemon-mode &
+	#pcmanfm --daemon-mode &
 fi
+
+# Fix android studio for tiling WM
+export _JAVA_AWT_WM_NONREPARENTING=1
+#export _JAVA_OPTIONS=-Djava.io.tmpdir=/var/cache/android
 
 # Trackpoint scroll
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
@@ -75,6 +81,8 @@ xset -b &
 xsetroot -cursor_name left_ptr &
 
 # Disable trackpad
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Natural Scrolling Enabled' 1
+xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1
 xinput disable 'SynPS/2 Synaptics TouchPad'
 
 # Set keyboard mapping

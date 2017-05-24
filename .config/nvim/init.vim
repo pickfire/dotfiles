@@ -2,12 +2,6 @@
 " 注意：该作者支持使用中文
 
 " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-" ┃ Neovim                                                                  ┃
-" ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-
-" ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 " ┃ Plug-ins                                                                ┃
 " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
@@ -21,7 +15,10 @@ endif
 " ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
 
 call plug#begin('~/.config/nvim/plugged/')
+Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
+Plug 'tpope/vim-surround'
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -65,6 +62,9 @@ cnoreabbrev ag Ack
 
 " Eye Candy
 colorscheme PaperColor
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+  \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
+  \,sm:block-blinkwait175-blinkoff150-blinkon175
 
 " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 " ┃ General                                                                 ┃
@@ -75,17 +75,13 @@ set shell=/bin/sh               " always in sh to prevent invalid argument
 set spelllang=en_us
 set thesaurus=/usr/share/mythes/mthesaur.txt
 set dictionary=/usr/share/dict/cracklib-small " a minimal dictionary
-set clipboard=unnamed,unnamedplus " easier copying
-
-set showcmd                     " show what you typed
-set ruler
+set clipboard+=unnamed " easier copying
 
 set cinoptions=(0,t0            " better c indentation
 
 " netrw
 let g:netrw_altv=1
 let g:netrw_banner=0
-"let g:netrw_browse_split=4
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
 
@@ -104,9 +100,9 @@ au FileType c               RainbowParentheses
 au FileType html            IndentGuidesEnable
 
 " filetype
-au FileType sh,zsh,html,javascript setlocal ts=2 sts=2 sw=2
-au FileType py,markdown            setlocal ts=4 sts=4 sw=4 et
-au FileType help                   setlocal nospell
+au FileType sh,jinja,html,javascript setlocal ts=2 sts=2 sw=2 et
+au FileType py,markdown              setlocal ts=4 sts=4 sw=4 et
+au FileType help                     setlocal nospell
 au FileType text,tex,markdown,asciidoc,html setlocal spell
 
 " vim: ts=2 sts=2 sw=2 et sta

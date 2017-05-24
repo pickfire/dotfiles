@@ -31,7 +31,7 @@ account riseup {
         set from="Ivan Tham <pickfire@riseup.net>"
         set folder=imaps://pickfire@mail.riseup.net/
         set record=+Sent
-        set smtp=smtps://pickfire@mail.riseup.net
+        set smtp=smtps://pickfire@mail.riseup.net:465/
 	set agent-shell-lookup="pass Mail/riseup.net | head -n 1"
 }
 
@@ -40,9 +40,20 @@ account google {
 	set from="Ivan Tham <ivanthamjunhoe@gmail.com>"
 	set folder=imaps://ivanthamjunhoe@imap.gmail.com/
 	set record="+[Gmail]/Sent Mail"
-	set smtp=smtps://ivanthamjunhoe@smtp.gmail.com
+	set smtp=smtps://ivanthamjunhoe@smtp.gmail.com:465/
 	set agent-shell-lookup="pass Mail/gmail.com | head -n 1"
 }
+
+account apu {
+	localopts on
+	set from="Ivan Tham <TP041848@apu.edu.my>"
+	set folder=imaps://TP041848%40mail.apu.edu.my@outlook.office365.com
+	set record="+Sent Items"
+	set smtp=smtps://TP041848%40mail.apu.edu.my@smtp.outlook.com:587
+	set agent-shell-lookup="pass Mail/apu.edu.my | head -n 1"
+}
+
+set smtp-use-starttls
 
 account riseup
 

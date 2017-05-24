@@ -21,6 +21,7 @@ application/x-extension-shtml=userapp-Firefox-6PFUVY.desktop;
 application/xhtml+xml=userapp-Firefox-6PFUVY.desktop;
 application/x-extension-xhtml=userapp-Firefox-6PFUVY.desktop;
 application/x-extension-xht=userapp-Firefox-6PFUVY.desktop;
+application/pdf=zathura-pdf-poppler.desktop;
 
 [Default Applications]
 application/directory=pcmanfm.desktop

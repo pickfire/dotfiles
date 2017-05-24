@@ -1,18 +1,24 @@
 #!/bin/sh
 
-[ "$1" != '-a' ] && grepadd='\(-L,\|[A-Z]-1,\)' || grepadd=''
+out=${XDG_CACHE_HOME:-$HOME/.cache}/tt.zip
+url=https://webspace.apiit.edu.my/intake-timetable/download_timetable/timetableCSV.zip
+int="UC1F1705CS(DA)"
 
-curl -s webspace.apiit.edu.my/intake-timetable/download_timetable/timetableCSV.zip \
-  | bsdtar -xOf- | grep UCFF1604CT | grep "$grepadd" | cut -f3- -d, \
-  | sed -e "
-    s/[^,]*,/$(printf '\033[35m')&/1  # 1: magenta
-    s/[^,]*,/$(printf '\033[32m')&/2  # 2: green
-    s/[^,]*,/$(printf '\033[31m')&/3  # 3: red
-    s/[^,]*,/$(printf '\033[33m')&/5  # 5: yellow
-    s/[^,]*$/$(printf '\033[36m')&/   # $: cyan
-    s/$/$(printf '\033[m')/           # cleanup
-    s/[A-Z]*[0-9]\{3\}-[0-9]-[0-9]-\([A-Z]*\)-/\1,/  # Simplify course
-    s/\([0-9][0-9]\):\([0-9][0-9]\)/\1\2/g           # 4 digits time
-    s/-[0-9]\{4\}//  # Remove year
-    s/\s\-\s/\-/g    # Remove useless spaces" \
-  | column -t -s,
+[ "$1" == '-a' ] && grepadd='\(-L,\|[A-Z]-1,\)' || grepadd=''
+[ -f $out ] && curl -s -o $out -z $out $url || curl -s -o $out $url
+
+bsdtar -xOf $out | grep $int, | grep "$grepadd" | cut -f3- -d, | sed -e "
+		s/[^,]*,/$(printf '\033[35m')&/1  # 1: magenta
+		s/[^,]*,/$(printf '\033[32m')&/2  # 2: green
+		s/[^,]*,/$(printf '\033[34m')&/3  # 3: blue
+		s/[^,]*,/$(printf '\033[31m')&/4  # 4: red
+		s/[^,]*,/$(printf '\033[33m')&/5  # 5: yellow
+		s/[^,]*$/$(printf '\033[36m')&/   # $: cyan
+		s/$/$(printf '\033[m')/           # $: reset
+		#s/[A-Z]*[0-9]\{3\}-[0-9]-[0-9]-\([A-Z]*\)-/\1,/ # Simplify course
+		s/\([0-9][0-9]\):\([0-9][0-9]\)/\1\2/g           # 4 digits time
+		s/(LS)//; /(FS)/ d   # Localization
+		s/NEW CAMPUS/NEW/    # Keyword substitution
+		s/-[0-9]\{4\}//  # Remove year
+		s/\s\-\s/\-/g    # Remove useless spaces" \
+	| column -t -s,

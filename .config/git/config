@@ -7,7 +7,7 @@
 	ci = commit -v
 	st = status -sb
 [core]
-	editor = nvim
+	editor = kak
 [help]
 	autocorrect = 3
 [color]

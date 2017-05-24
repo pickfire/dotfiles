@@ -13,7 +13,9 @@ if not set -q fish_initialized
 	set -U CXXFLAGS	$CFLAGS
 	set -U MAKEFLAGS -j5
 
-	set -U fish_user_paths ~/.local/bin $PATH
+	set -U GOPATH   $HOME/src/go
+	set -U GOROOT   /usr/lib/go
+	set -U fish_user_paths ~/.local/bin $GOPATH/bin /usr/local/go/bin (ruby -e 'print Gem.user_dir') $HOME/.rbenv/bin $PATH
 	set -U TIMEWARRIORDB ~/.task/timew
 
 	set -U fish_initialized
