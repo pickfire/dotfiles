@@ -15,7 +15,7 @@ if not set -q fish_initialized
 
 	set -U GOPATH   $HOME/src/go
 	set -U GOROOT   /usr/lib/go
-	set -U fish_user_paths ~/.local/bin $GOPATH/bin /usr/local/go/bin (ruby -e 'print Gem.user_dir') $HOME/.rbenv/bin $PATH
+	set -U fish_user_paths ~/.local/bin $GOPATH/bin $PATH
 	set -U TIMEWARRIORDB ~/.task/timew
 
 	set -U fish_initialized

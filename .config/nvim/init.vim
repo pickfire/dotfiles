@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/plugged/')
 Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'tpope/vim-surround'
-Plug 'editorconfig/editorconfig-vim'
+"Plug 'editorconfig/editorconfig-vim'
 
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -100,9 +100,9 @@ au FileType c               RainbowParentheses
 au FileType html            IndentGuidesEnable
 
 " filetype
-au FileType sh,jinja,html,javascript setlocal ts=2 sts=2 sw=2 et
-au FileType py,markdown              setlocal ts=4 sts=4 sw=4 et
-au FileType help                     setlocal nospell
+au FileType sh,xml,html,javascript setlocal ts=2 sts=2 sw=2 et
+au FileType py,markdown            setlocal ts=4 sts=4 sw=4 et
+au FileType help                   setlocal nospell
 au FileType text,tex,markdown,asciidoc,html setlocal spell
 
 " vim: ts=2 sts=2 sw=2 et sta

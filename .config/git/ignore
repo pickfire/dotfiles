@@ -4,4 +4,6 @@ cscope.po.out
 tags
 *.o
 *.pyc
+*.log
 .~lock.*
+venv/

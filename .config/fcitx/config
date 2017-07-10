@@ -3,7 +3,7 @@ TriggerKey=SUPER_SPACE
 #ReloadConfig=CTRL_5
 
 [Program]
-#ShareStateAmongWindow=No # No/All/PerProgram
+ShareStateAmongWindow=PerProgram # No/All/PerProgram
 #DefaultInputMethodState=Inactive # Active/Inactive
 
 [Output]
@@ -15,4 +15,4 @@ TriggerKey=SUPER_SPACE
 #DontCommitPreeditWhenUnfocus=False
 
 [Appearance]
-#ShowInputSpeed=False
+ShowInputSpeed=True

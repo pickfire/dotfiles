@@ -21,19 +21,16 @@ fi
 
 # Different customization for different os
 . /etc/os-release
-if [ $ID = 'void' ]; then
-	echo "No input methods yet!"
-elif [ $ID = 'alpine' ]; then
-	echo "No input methods yet!"
+if [ $ID = 'alpine' ]; then
+  # Set keyboard mapping
+  setxkbmap -layout 'us,us,us' -variant 'dvorak,dvp,' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
 elif [ $ID = 'arch' ]; then
-	#setxkbmap -layout 'us,us,us' -variant 'dvorak,dvp,' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
 	#exec startlxde
 	# Random wallpaper
 	#qiv -zr ~/.config/wallpaper/* &
 
-	# Set qt configuration
-	#[ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] \
-	# || export QT_QPA_PLATFORMTHEME="qt5ct"
+  # Set fallback keyboard mapping
+  setxkbmap -layout 'us,us' -variant 'dvorak,dvp' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
 
 	# Autostart fcitx
 	export GTK_IM_MODULE=fcitx
@@ -43,9 +40,6 @@ elif [ $ID = 'arch' ]; then
 
 	# ssh-agent
 	#eval $(ssh-agent | tee ~/.ssh/env)
-
-	# Use daemon processes to increase performance
-	#pcmanfm --daemon-mode &
 fi
 
 # Fix android studio for tiling WM
@@ -59,7 +53,7 @@ xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 6 7 4 5
 
 # Auto lockscreen
-#xautolock -time 5 -locker "slock" &
+xautolock -time 5 -locker "slock" &
 
 # Set backlight
 xbacklight -set 5 &
@@ -85,9 +79,6 @@ xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Natural Scrolling Enabl
 xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1
 xinput disable 'SynPS/2 Synaptics TouchPad'
 
-# Set keyboard mapping
-setxkbmap -layout 'us,us,us' -variant 'dvorak,dvp,' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
-
 # Set color spaces
 #xiccd &
 #dispwin -c /usr/share/color/icc/TPLCD.icm &
@@ -97,9 +88,10 @@ IFS=:
 stest -flx $PATH | sort -u > $HOME/.cache/dmenu_run
 
 # Add-on for tiling window managers
+pcmanfm --daemon-mode &
 redshift &
 dwmstatus &
-#dunst &
+dunst &
 #xsnow -nosanta -notrees &
 
 # Use dwm as default
