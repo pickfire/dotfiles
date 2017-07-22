@@ -1,0 +1,88 @@
+#
+# ~/.newsbeuter/config
+#
+# Author:  Ivan Tham <ivanthamjunhoe@gmail.com>
+# Example: /usr/share/doc/newsbeuter/examples/config
+#
+# ~/.newsbeuter/urls are imported with newsbeuter -i blogroll.opml
+
+#------------------------------------------------------------
+# General
+#------------------------------------------------------------
+
+# Read
+article-sort-order date-asc   # [date|title|flags|author|link|guid]-[asc|desc]
+
+# Load
+auto-reload yes               # [yes|no]
+reload-time 120
+reload-threads 3
+
+# Item
+max-items 30
+keep-articles-days 15
+
+# Info
+notify-xterm no               # [yes|no]
+notify-beep yes               # [yes|no]
+
+# Cache
+cache-file "~/.cache/newsbeuter/cache.db"
+cookie-cache "~/.cache/newsbeuter/cookies.txt"
+
+# Notify
+notify-format "%f unread feeds (%n unread articles)"
+notify-program notify-send -t 10 "Newsbeuter"
+
+# Ignore
+ignore-article "*" "title =~ \"Sponsor\""
+ignore-article "*" "title =~ \"Advertisement\""
+
+#------------------------------------------------------------
+# External
+#------------------------------------------------------------
+
+# HTML
+browser xdg-open
+html-renderer internal
+
+# Pager
+pager internal
+text-width 80
+
+#external-url-viewer ""
+
+#------------------------------------------------------------
+# Vi-keys binding
+#------------------------------------------------------------
+
+bind-key k up
+bind-key j down
+bind-key h left
+bind-key l right
+
+bind-key g home
+bind-key G end
+
+#------------------------------------------------------------
+# Eye Candy
+#------------------------------------------------------------
+
+# Highlight
+#highlight article "^Title:.*" color12
+#highlight article "^Feed:.*"  color3
+#highlight article "^(Link|Date):[^\n]+" color19
+#highlight article "https?://[^ \n]+" color1
+
+# Basic
+#color background              color7 color0
+#color listnormal              color7 color0
+#color listfocus               color15 color4
+color info                    color7 color0
+#color article                 color7 color0
+#color listnormal_unread       color15 color0 bold
+#color listfocus_unread        color18 color3 bold
+
+# Disable bars
+show-keymap-hint no
+swap-title-and-hints yes
