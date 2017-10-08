@@ -15,25 +15,23 @@ endif
 " ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
 
 call plug#begin('~/.config/nvim/plugged/')
-Plug 'lepture/vim-jinja', { 'for': 'jinja' }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
-Plug 'tpope/vim-surround'
-"Plug 'editorconfig/editorconfig-vim'
-
 Plug 'othree/html5.vim', { 'for': 'html' }
+
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'dag/vim-fish', { 'for': 'fish' }
-Plug 'ledger/vim-ledger'
+Plug 'ledger/vim-ledger', { 'for': 'ledger' }
+Plug 'posva/vim-vue', { 'for': 'vue' }
 
 Plug 'mileszs/ack.vim', { 'on': 'Ack' }
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-scripts/taglist.vim', { 'on': 'TlistToggle' }
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 
 Plug 'lilydjwg/colorizer'         " colorize #c6c6c6
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesEnable' }
 Plug 'junegunn/rainbow_parentheses.vim', { 'on': 'RainbowParentheses' }
-Plug 'ntpeters/vim-better-whitespace'
+"Plug 'ntpeters/vim-better-whitespace'
+
+Plug 'jamessan/vim-gnupg'
 
 Plug 'skydark/fcitx.vim', { 'on': 'Fcitx' }
 Plug 'NLKNguyen/papercolor-theme' " inspired by google's material design
@@ -62,6 +60,7 @@ cnoreabbrev ag Ack
 
 " Eye Candy
 colorscheme PaperColor
+"set background=dark
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
@@ -100,9 +99,14 @@ au FileType c               RainbowParentheses
 au FileType html            IndentGuidesEnable
 
 " filetype
-au FileType sh,xml,html,javascript setlocal ts=2 sts=2 sw=2 et
-au FileType py,markdown            setlocal ts=4 sts=4 sw=4 et
-au FileType help                   setlocal nospell
+au BufRead,BufNewFile ~/usr/led/*.dat setlocal ft=ledger
+au BufRead,BufNewFile *.vue           setlocal ft=vue
+au FileType sh,xml,html,javascript    setlocal ts=2 sts=2 sw=2 et
+au FileType py,markdown               setlocal ts=4 sts=4 sw=4 et
+au FileType help                      setlocal nospell
 au FileType text,tex,markdown,asciidoc,html setlocal spell
+
+" format tel on vcf
+au BufRead *.vcf let @t=':s/[-+ ]//ge | s/:6\?0\(3\|1.\)/:+60 \1-/ | s/\d\{4\}$/ &//TELh'
 
 " vim: ts=2 sts=2 sw=2 et sta

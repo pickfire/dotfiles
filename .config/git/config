@@ -8,6 +8,8 @@
 	st = status -sb
 [core]
 	editor = nvim
+	whitespace = trailing-space
+	autocrlf = input
 [help]
 	autocorrect = 3
 [color]
@@ -36,5 +38,9 @@
 	default = simple
 [url "ssh://ivan@pickfire.tk/srv/git/"]
 	insteadOf = home:
+[url "git@bitbucket.org:"]
+	insteadOf = bb:
 #[url "http://"]
 #	insteadOf = git://
+[apply]
+	whitespace = fix

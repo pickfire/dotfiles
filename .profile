@@ -4,9 +4,10 @@ export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS='-j5'
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR=nvim
-export BROWSER=firefox
 export SHELL=fish
 export PATH="$HOME/.cargo/bin:$PATH"
+eval $(dircolors)
+command -v firefox-nightly >/dev/null && export BROWSER=firefox-nightly || export BROWSER=firefox
 
 case $- in
 	*i*) command -v fortune >/dev/null && fortune; exec fish;;

@@ -1,60 +1,37 @@
 # s-nail configuration
 set v15-compat
 
-set ssl-ca-file=/etc/ssl/certs/ca-certificates.crt
-set ssl-no-default-ca
-set ssl-protocol="-ALL,+TLSv1.2"
-set ssl-cipher-list="ALL:!aNULL:!MEDIUM:!LOW:!MD5:!RC4:!EXPORT:@STRENGTH"
-set ssl-verify=strict
-
-set sendcharsets=utf-8
-set reply-in-same-charset
-
-set skipemptybody
-set sendwait
-set mimetypes-load-control
-
-set imap-cache=~/.cache/mail
-set imap-keepalive=30
-
-set colour-pager crt=80 mime-counter-evidence=6
-set datefield="%b %d"
-set headline="%>%a%m %-18f %6d %-5o %i%-s"
+set imap-cache=~/.cache/mail imap-keepalive=30
+set imap-use-starttls smtp-use-starttls smtp-auth=login
+set netrc-lookup netrc-pipe='gpg -dq ~/.netrc.gpg'
 
 set followup-to followup-to-honour=ask-yes reply-to-honour=ask-yes
-mlsubscribe suckless.org$ git@vger.kernel.org$ lists.alpinelinux.org$
+mlsubscribe suckless\.org git@vger\.kernel\.org lists\.alpinelinux\.org
 
 retain date from to cc subject
+set datefield="%b %d" headline="%>%a%m %-18f %6d %-5o %i%-s"
 
 account riseup {
 	localopts on
+        set folder=imaps://mail.riseup.net inbox=+INBOX record=+Sent
         set from="Ivan Tham <pickfire@riseup.net>"
-        set folder=imaps://pickfire@mail.riseup.net/
-        set record=+Sent
-        set smtp=smtps://pickfire@mail.riseup.net:465/
-	set agent-shell-lookup="pass Mail/riseup.net | head -n 1"
+        set mta=submission://mail.riseup.net
 }
 
 account google {
 	localopts on
 	set from="Ivan Tham <ivanthamjunhoe@gmail.com>"
-	set folder=imaps://ivanthamjunhoe@imap.gmail.com/
-	set record="+[Gmail]/Sent Mail"
-	set smtp=smtps://ivanthamjunhoe@smtp.gmail.com:465/
-	set agent-shell-lookup="pass Mail/gmail.com | head -n 1"
+	set folder=imaps://imap.gmail.com inbox=+INBOX
+	# record="+[Gmail]/Sent Mail" fails
+	set mta=submission://smtp.gmail.com
 }
 
 account apu {
 	localopts on
-	set from="Ivan Tham <TP041848@apu.edu.my>"
-	set folder=imaps://TP041848%40mail.apu.edu.my@outlook.office365.com
-	set record="+Sent Items"
-	set smtp=smtps://TP041848%40mail.apu.edu.my@smtp.outlook.com:587
-	set agent-shell-lookup="pass Mail/apu.edu.my | head -n 1"
+	set folder=imaps://outlook.office365.com inbox=+INBOX
+	# record="+Sent Items" fails
+	set from="Ivan Tham <TP041848@mail.apu.edu.my>"
+	set mta=submission://smtp.office365.com
 }
 
-set smtp-use-starttls
-
 account riseup
-
-set pipe-text/html="elinks -dump -force-html /dev/stdin"

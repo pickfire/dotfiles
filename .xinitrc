@@ -39,7 +39,7 @@ elif [ $ID = 'arch' ]; then
 	fcitx -r &
 
 	# ssh-agent
-	#eval $(ssh-agent | tee ~/.ssh/env)
+	eval $(ssh-agent | tee ~/.ssh/env)
 fi
 
 # Fix android studio for tiling WM
@@ -63,7 +63,7 @@ xset +dpms &
 xset dpms 0 0 240 &
 
 # Reduce typematic delay
-xset r rate 150 40
+xset r rate 150 60
 
 # Mouse acceleration
 xset m 2/1 4
