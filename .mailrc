@@ -12,14 +12,12 @@ retain date from to cc subject
 set datefield="%b %d" headline="%>%a%m %-18f %6d %-5o %i%-s"
 
 account riseup {
-	localopts on
         set folder=imaps://mail.riseup.net inbox=+INBOX record=+Sent
         set from="Ivan Tham <pickfire@riseup.net>"
         set mta=submission://mail.riseup.net
 }
 
 account google {
-	localopts on
 	set from="Ivan Tham <ivanthamjunhoe@gmail.com>"
 	set folder=imaps://imap.gmail.com inbox=+INBOX
 	# record="+[Gmail]/Sent Mail" fails
@@ -27,9 +25,8 @@ account google {
 }
 
 account apu {
-	localopts on
 	set folder=imaps://outlook.office365.com inbox=+INBOX
-	# record="+Sent Items" fails
+	set record=+Sent%20Items
 	set from="Ivan Tham <TP041848@mail.apu.edu.my>"
 	set mta=submission://smtp.office365.com
 }
