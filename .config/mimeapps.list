@@ -25,6 +25,8 @@ application/pdf=zathura-pdf-poppler.desktop;
 text/csv=gnumeric.desktop;
 text/x-sh=nvim.desktop;
 video/mp4=mpv.desktop;
+application/x-sh=nvim.desktop;
+image/octet-stream=feh.desktop;
 
 [Default Applications]
 application/directory=pcmanfm.desktop

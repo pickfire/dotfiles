@@ -34,9 +34,16 @@ if [ "$1" = "win" -a $# -eq 1 ]; then
 #		-net nic -net user,smb=$HOME -soundhw hda -balloon virtio \
 #		-drive file=$HOME/act/img/win10.raw,format=raw,cache=none,if=virtio
 
-	qemu-system-x86_64 -enable-kvm -m 4096 -cpu host -smp 2 -balloon virtio \
-		-net nic,model=virtio,vlan=0 -net user -soundhw hda -vga virtio -display sdl,gl=on \
-		-drive file=$HOME/act/img/windows.raw,format=raw,cache=none,if=virtio
+  d=$HOME/act/img/win08
+
+  qemu-system-x86_64 -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
+    -machine type=pc,accel=kvm -m 2G -balloon virtio -soundhw hda \
+    -net nic,model=virtio -net user,smb=$HOME \
+    -vga virtio -display sdl,gl=on \
+    -drive file=$d/win2k8r2.raw,format=raw,if=virtio,aio=native,cache.direct=on \
+    -drive file=$d/virtio.iso,index=3,media=cdrom
+    #-net nic,model=virtio -net bridge,br=br0 -net user,smb=$HOME \
+    # -drive file=$d/win08.iso,index=2,media=cdrom \
 fi
 
 #qemu-system-x86_64 --enable-kvm -smp 2 -m 512M -cpu host -boot order=d \
