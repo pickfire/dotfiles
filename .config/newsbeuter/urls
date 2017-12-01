@@ -5,6 +5,7 @@ https://www.linuxvoice.com/feed/
 https://www.linux.com/feeds/all-content
 https://www.raspberrypi.org/feed/
 http://feeds2.feedburner.com/Command-line-fu
+https://www.topbug.net/feed/
 
 http://www.voidlinux.eu/atom.xml
 https://alpinelinux.org/atom.xml
@@ -17,12 +18,15 @@ http://horriblesubs.info/feed/
 https://xkcd.com/atom.xml
 http://www.peppercarrot.com/feed/en/rss
 https://thefullsnack.com/feed
+https://feeds.mozilla-podcasts.org/irl
 
+http://amir.rachum.com/feed.xml
 http://natalian.org/index.atom
 
 https://github.com/BYVoid/OpenCC/commits/master.atom
 https://github.com/soimort/you-get/releases.atom
-https://github.com/madmalik/mononoki/tags.atom
+https://github.com/madmalik/mononoki/releases.atom
+https://github.com/source-foundry/Hack/releases.atom
 https://github.com/felixonmars/ydcv/releases.atom
 https://git.kernel.org/pub/scm/git/git.git/atom/Documentation/git.txt?h=maint
 https://github.com/universal-ctags/ctags/releases.atom
