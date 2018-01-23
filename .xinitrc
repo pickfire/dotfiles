@@ -42,9 +42,11 @@ elif [ $ID = 'arch' ]; then
 	eval $(ssh-agent | tee ~/.ssh/env)
 fi
 
-# Fix android studio for tiling WM
+# Fix java on tiling WM
 export _JAVA_AWT_WM_NONREPARENTING=1
-#export _JAVA_OPTIONS=-Djava.io.tmpdir=/var/cache/android
+
+# Firefox pixel-perfect scrolling
+export MOZ_USE_XINPUT2=1
 
 # Trackpoint scroll
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
@@ -59,8 +61,11 @@ xautolock -time 5 -locker "slock" &
 xbacklight -set 5 &
 
 # DPMS
-xset +dpms &
-xset dpms 0 0 240 &
+#xset +dpms &
+#xset dpms 0 0 240 &
+xset s noblank
+xset s off
+xset -dpms
 
 # Reduce typematic delay
 xset r rate 150 60
@@ -91,7 +96,7 @@ stest -flx $PATH | sort -u > $HOME/.cache/dmenu_run
 pcmanfm --daemon-mode &
 redshift &
 dwmstatus &
-dunst &
+#dunst &
 #xsnow -nosanta -notrees &
 
 # Use dwm as default

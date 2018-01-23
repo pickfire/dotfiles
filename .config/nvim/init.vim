@@ -17,6 +17,7 @@ endif
 call plug#begin('~/.config/nvim/plugged/')
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'dag/vim-fish', { 'for': 'fish' }
@@ -59,8 +60,8 @@ let g:ackprg = 'ag --vimgrep --smart-case'
 cnoreabbrev ag Ack
 
 " Eye Candy
-colorscheme PaperColor
-"set background=dark
+"colorscheme PaperColor
+set background=dark
 set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
   \,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor
   \,sm:block-blinkwait175-blinkoff150-blinkon175
@@ -101,10 +102,14 @@ au FileType html            IndentGuidesEnable
 " filetype
 au BufRead,BufNewFile ~/usr/led/*.dat setlocal ft=ledger
 au BufRead,BufNewFile *.vue           setlocal ft=vue
-au FileType sh,xml,html,javascript    setlocal ts=2 sts=2 sw=2 et
+au BufRead,BufNewFile *.ts            setlocal ft=typescript
+au FileType sh,xml,html,vue,*script   setlocal ts=2 sts=2 sw=2 et
 au FileType py,markdown               setlocal ts=4 sts=4 sw=4 et
 au FileType help                      setlocal nospell
 au FileType text,tex,markdown,asciidoc,html setlocal spell
+if executable('ctags')
+  au BufWritePost *.c,*.h silent! !ctags -R &
+endif
 
 " format tel on vcf
 au BufRead *.vcf let @t=':s/[-+ ]//ge | s/:6\?0\(3\|1.\)/:+60 \1-/ | s/\d\{4\}$/ &//TELh'

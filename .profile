@@ -4,12 +4,21 @@ export CXXFLAGS="$CFLAGS"
 export MAKEFLAGS='-j5'
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR=vi
-export SHELL=ash
 export PATH="$HOME/.cargo/bin:$PATH"
-eval $(dircolors)
+
+command -v gem >/dev/null && export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH" GEM_HOME=$HOME/.gem
+command -v dircolors >/dev/null && eval $(dircolors)
 command -v firefox-nightly >/dev/null && export BROWSER=firefox-nightly || export BROWSER=firefox
 
-case $- in
-	*i*) command -v fortune >/dev/null && fortune; exec fish;;
-esac
+if command -v fish >/dev/null
+then
+  export SHELL=`which fish`
+  case $- in
+    *i*) command -v fortune >/dev/null && fortune; exec $SHELL;;
+  esac
+fi
+
 alias tm='tmux -u attach'
+
+# arcticicestudio/igloo
+export GRADLE_OPTS="-Dorg.gradle.daemon=true -Dorg.gradle.console=rich"
