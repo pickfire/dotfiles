@@ -12,7 +12,7 @@ command -v firefox-nightly >/dev/null && export BROWSER=firefox-nightly || expor
 
 if command -v fish >/dev/null
 then
-  export SHELL=`which fish`
+  export SHELL=fish
   case $- in
     *i*) command -v fortune >/dev/null && fortune; exec $SHELL;;
   esac
