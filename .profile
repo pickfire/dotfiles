@@ -10,6 +10,20 @@ command -v gem >/dev/null && export PATH="$(ruby -e 'print Gem.user_dir')/bin:$P
 command -v dircolors >/dev/null && eval $(dircolors)
 command -v firefox-nightly >/dev/null && export BROWSER=firefox-nightly || export BROWSER=firefox
 
+if command -v rustc >/dev/null
+then
+  export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+  if command -v sccache >/dev/null
+  then
+    export RUSTC_WRAPPER="sccache"
+  fi
+fi
+
+alias tm='tmux -u attach'
+
+# arcticicestudio/igloo
+export GRADLE_OPTS="-Dorg.gradle.daemon=true -Dorg.gradle.console=rich"
+
 if command -v fish >/dev/null
 then
   export SHELL=fish
@@ -17,8 +31,3 @@ then
     *i*) command -v fortune >/dev/null && fortune; exec $SHELL;;
   esac
 fi
-
-alias tm='tmux -u attach'
-
-# arcticicestudio/igloo
-export GRADLE_OPTS="-Dorg.gradle.daemon=true -Dorg.gradle.console=rich"
