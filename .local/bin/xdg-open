@@ -15,14 +15,18 @@ for uri in $*; do
     *.txt) st -e sh -c "curl -s $uri | ${PAGER:-${VISUAL}}";;
     *.html) [ -n $DISPLAY ] && ${BROWSER:-firefox} "$uri" || w3m "$uri";;
 
+    *.webm|*.mp4|*.ogv) noproxy; ffplay "$uri";;
+    *youtube.com/*|*youtu.be/*) noproxy; you-get -p ffplay "$uri";;
+
+    http://*.gif|https://*.gif) [ -n $DISPLAY ] && ${BROWSER:-firefox} "$uri";;
+
     *.gif) ffplay "$uri";;
     *.jp*g|*.png) [ -n $DISPLAY ] && feh "$uri" || fbi "$uri";;
-
-    *.webm|*.mp4|*.ogv) noproxy; ffplay "$uri";;
-    *youtube.com/*|*youtu.be/*) noproxy; ffplay $(yturl -q high "$uri");;
+    *.pdf) [ -n $DISPLAY ] && zathura "$uri" || fbpdf "$ri";;
 
     http://*|https://*) [ -n $DISPLAY ] && ${BROWSER:-firefox} "$uri" || w3m "$uri";;
     gopher://*) [ $TERM != linux ] && st -e sh -c "lynx $uri" || lynx "$uri";;
+
     *) /usr/bin/xdg-open "$uri";; # Blame xdg-open just in case anything happens
   esac
 done

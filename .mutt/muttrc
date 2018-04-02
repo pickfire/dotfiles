@@ -13,7 +13,7 @@
 # General
 #------------------------------------------------------------
 
-set editor       = "vi"
+set editor       = "nvim"
 set ispell       = "/usr/bin/aspell -e -c" # use aspell as ispell
 set send_charset = "utf-8"    # utf-8 is the standard
 set mailcap_path = ~/.mutt/mailcap

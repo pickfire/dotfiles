@@ -36,7 +36,7 @@
 	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [push]
 	default = simple
-[url "ssh://ivan@pickfire.tk/srv/git/"]
+[url "ssh://ivan@pickfire.tk:4121/srv/git/"]
 	insteadOf = home:
 [url "git@bitbucket.org:"]
 	insteadOf = bb:
