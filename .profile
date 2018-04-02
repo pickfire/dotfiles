@@ -20,6 +20,7 @@ then
 fi
 
 alias tm='tmux -u attach'
+alias home='git --work-tree=/home/ivan --git-dir=/home/ivan/.home'
 
 # arcticicestudio/igloo
 export GRADLE_OPTS="-Dorg.gradle.daemon=true -Dorg.gradle.console=rich"

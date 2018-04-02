@@ -7,7 +7,6 @@
 	ci = commit -v
 	st = status -sb
 [core]
-	editor = nvim
 	whitespace = trailing-space
 	autocrlf = input
 [help]
