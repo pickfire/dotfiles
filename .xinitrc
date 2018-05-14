@@ -42,6 +42,10 @@ elif [ $ID = 'arch' ]; then
 	eval $(ssh-agent | tee ~/.ssh/env)
 fi
 
+if [ "$1" = 'lxde' ]; then
+  exec startlxde
+fi
+
 # Fix java on tiling WM
 export _JAVA_AWT_WM_NONREPARENTING=1
 

@@ -3,12 +3,13 @@
 	name = Ivan Tham
 	signingkey = DBD0F842
 [alias]
-	lg = log --decorate --graph --all --oneline
+	lg = log --oneline --decorate --all --graph
 	ci = commit -v
 	st = status -sb
 [core]
 	whitespace = trailing-space
 	autocrlf = input
+	editor = nvim
 [help]
 	autocorrect = 3
 [color]
@@ -37,6 +38,8 @@
 	default = simple
 [url "ssh://ivan@pickfire.tk:4121/srv/git/"]
 	insteadOf = home:
+[url "git@github.com:"]
+	insteadOf = gh:
 [url "git@bitbucket.org:"]
 	insteadOf = bb:
 #[url "http://"]

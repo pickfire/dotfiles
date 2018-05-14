@@ -156,6 +156,7 @@ bind index,pager B sidebar-toggle-visible
 #------------------------------------------------------------
 
 # Moving around
+bind index,pager         g   noop
 bind browser,index       gg  first-entry
 bind browser,index       G   last-entry
 bind pager               gg  top

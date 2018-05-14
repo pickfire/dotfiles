@@ -1,8 +1,9 @@
 #!/bin/sh
 
+# export LC_ALL=C
 out=${XDG_CACHE_HOME:-$HOME/.cache}/tt.zip
-url=https://webspace.apiit.edu.my/intake-timetable/download_timetable/timetableCSV.zip
-int="UC1F1705CS(DA)"
+url=https://lms.apiit.edu.my/intake-timetable/download_timetable/timetableCSV.zip
+int='UC2F1805CS(DA)'
 
 [ "$1" == '-a' ] && grepadd='\(-L,\|[A-Z]-1,\)' || grepadd=''
 [ -f $out ] && curl -s -o $out -z $out $url || curl -s -o $out $url
