@@ -89,6 +89,7 @@ set dictionary=/usr/share/dict/cracklib-small " a minimal dictionary
 set clipboard+=unnamed " easier copying
 
 set cinoptions=(0,t0            " better c indentation
+set list                        " clear whitespace
 set grepprg=rg\ --vimgrep
 
 " netrw
@@ -96,6 +97,24 @@ let g:netrw_altv=1
 let g:netrw_banner=0
 let g:netrw_liststyle=3
 let g:netrw_list_hide=netrw_gitignore#Hide()
+
+call matchadd('ColorColumn', '\%81v', 100) " colorcolumn only on wide lines
+
+" highlight matches when jumping to next
+nnoremap <silent> n  n:call HLNext(0.4)<cr>
+nnoremap <silent> N  N:call HLNext(0.4)<cr>
+
+function! HLNext (blinktime)
+  highlight DefaultOnRed ctermbg=red
+  let [bufnum, lnum, col, off] = getpos('.')
+  let matchlen = strlen(matchstr(strpart(getline('.'),col-1),@/))
+  let target_pat = '\c\%#\%('.@/.'\)'
+  let ring = matchadd('DefaultOnRed', target_pat, 101)
+  redraw
+  exec 'sleep ' . float2nr(a:blinktime * 10) . 'm'
+  call matchdelete(ring)
+  redraw
+endfunction
 
 " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 " ┃ Key Bindings                                                            ┃
