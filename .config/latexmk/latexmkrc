@@ -1,0 +1,2 @@
+# clean .bbl files
+$bibtex_use = 2;

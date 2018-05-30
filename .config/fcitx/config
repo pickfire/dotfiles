@@ -1,10 +1,10 @@
 [Hotkey]
 TriggerKey=SUPER_SPACE
-#ReloadConfig=CTRL_5
+PrevPageKey=/ UP
+NextPageKey== DOWN
 
 [Program]
 ShareStateAmongWindow=PerProgram # No/All/PerProgram
-#DefaultInputMethodState=Inactive # Active/Inactive
 
 [Output]
 #HalfPuncAfterNumber=True

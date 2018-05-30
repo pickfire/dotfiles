@@ -21,7 +21,7 @@ application/x-extension-shtml=userapp-Firefox-6PFUVY.desktop;userapp-Nightly-3OH
 application/xhtml+xml=userapp-Firefox-6PFUVY.desktop;userapp-Nightly-3OHV4Y.desktop;
 application/x-extension-xhtml=userapp-Firefox-6PFUVY.desktop;userapp-Nightly-3OHV4Y.desktop;
 application/x-extension-xht=userapp-Firefox-6PFUVY.desktop;userapp-Nightly-3OHV4Y.desktop;
-application/pdf=zathura-pdf-poppler.desktop;
+application/pdf=zathura-pdf-poppler.desktop;org.pwmt.zathura-pdf-mupdf.desktop;
 text/csv=gnumeric.desktop;
 text/x-sh=nvim.desktop;
 video/mp4=mpv.desktop;
@@ -31,7 +31,7 @@ image/octet-stream=feh.desktop;
 [Default Applications]
 application/directory=pcmanfm.desktop
 text/plain=gvim.desktop
-application/pdf=zathura-pdf-mupdf.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 text/x-matlab=leafpad.desktop
 image/png=sxiv.desktop
 image/jpeg=sxiv.desktop
