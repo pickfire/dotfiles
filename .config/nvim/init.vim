@@ -30,7 +30,7 @@ Plug 'ledger/vim-ledger', { 'for': 'ledger' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-Plug 'w0rp/ale', { 'on': 'ALEEnable' }
+Plug 'w0rp/ale'
 
 Plug 'lilydjwg/colorizer'         " colorize #c6c6c6
 Plug 'nathanaelkane/vim-indent-guides', { 'on': 'IndentGuidesEnable' }
@@ -59,7 +59,11 @@ let g:colorizer_maxlines = 256
 let g:user_emmet_install_global = 1
 
 " vim-racer
-au FileType rust nmap gd <Plug>(rust-def)
+let g:racer_experimental_completer = 1
+"au FileType rust nmap gd         <Plug>(rust-def)
+"au FileType rust nmap <c-w><c-d> <Plug>(rust-def-split)
+"au FileType rust nmap <c-w>d     <Plug>(rust-def-split)
+"au FileType rust nmap <leader>gd <Plug>(rust-doc)
 
 " Eye Candy
 "colorscheme PaperColor
@@ -76,6 +80,7 @@ let g:ale_fixers = {
 \  'javascript': ['eslint'],
 \  'rust': ['rustfmt'],
 \}
+let g:ale_java_javac_classpath = '/home/ivan/usr/uni/oodj/ass/build/classes'
 
 " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 " ┃ General                                                                 ┃
@@ -86,7 +91,6 @@ set shell=/bin/sh               " always in sh to prevent invalid argument
 set spelllang=en_us
 set thesaurus=/usr/share/mythes/mthesaur.txt
 set dictionary=/usr/share/dict/cracklib-small " a minimal dictionary
-set clipboard+=unnamed " easier copying
 
 set cinoptions=(0,t0            " better c indentation
 set list                        " clear whitespace
@@ -130,6 +134,11 @@ tnoremap <ESC><ESC> <C-\><C-n>
 au FileType c               RainbowParentheses
 au FileType html            IndentGuidesEnable
 
+" tags
+au BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+au BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+au BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+
 " filetype
 au BufRead,BufNewFile ~/usr/led/*.dat            setlocal ft=ledger
 au FileType sh,xml,html,vue,*script,liquid,pug   setlocal ts=2 sts=2 sw=2 et
@@ -137,6 +146,7 @@ au FileType py,markdown                          setlocal ts=4 sts=4 sw=4 et
 au FileType help                                 setlocal nospell
 au FileType text,tex,markdown,asciidoc,html      setlocal spell
 au FileType javascript                           setlocal cino=J1
+au FileType java                                 setlocal makeprg=ant\ compile
 if executable('ctags')
   au BufWritePost *.c,*.h silent! !ctags -R &
 endif

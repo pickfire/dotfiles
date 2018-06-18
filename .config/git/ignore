@@ -2,9 +2,12 @@ cscope.in.out
 cscope.out
 cscope.po.out
 tags
+rusty-tags.vi
+rusty-tags.emacs
 *.o
 *.pyc
 *.log
 .~lock.*
+.trigger
 venv/
 .tup/

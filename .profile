@@ -5,6 +5,7 @@ export MAKEFLAGS='-j5'
 export PATH=$HOME/.local/bin:$PATH
 export EDITOR=vi
 export PATH="$HOME/.cargo/bin:$PATH"
+export JAVA_HOME=/usr/lib/jvm/default/
 
 command -v gem >/dev/null && export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH" GEM_HOME=$HOME/.gem
 command -v dircolors >/dev/null && eval $(dircolors)
@@ -13,10 +14,11 @@ command -v firefox-nightly >/dev/null && export BROWSER=firefox-nightly || expor
 if command -v rustc >/dev/null
 then
   export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-  if command -v sccache >/dev/null
-  then
-    export RUSTC_WRAPPER="sccache"
-  fi
+  # sccache integration degrade with incremental compilation
+  # if command -v sccache >/dev/null
+  # then
+  #   export RUSTC_WRAPPER="sccache"
+  # fi
 fi
 
 alias tm='tmux -u attach'

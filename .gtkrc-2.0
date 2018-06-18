@@ -5,8 +5,8 @@ include "/home/ivan/.gtkrc-2.0.mine"
 gtk-theme-name="Breeze"
 gtk-icon-theme-name="breeze"
 gtk-font-name="Sans 10"
-gtk-cursor-theme-name="Adwaita"
-gtk-cursor-theme-size=18
+gtk-cursor-theme-name="Breeze_Snow"
+gtk-cursor-theme-size=0
 gtk-toolbar-style=GTK_TOOLBAR_BOTH
 gtk-toolbar-icon-size=GTK_ICON_SIZE_LARGE_TOOLBAR
 gtk-button-images=1
