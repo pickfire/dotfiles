@@ -58,8 +58,6 @@ text-width 80
 
 bind-key k up
 bind-key j down
-bind-key h left
-bind-key l right
 
 bind-key g home
 bind-key G end
