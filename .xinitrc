@@ -11,12 +11,17 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 [ -f "$userresources" ] && xrdb -merge "$userresources"
 [ -f "$usermodmap" ]    && xmodmap "$usermodmap"
 
-# start some nice programs
+# Start some nice programs
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
   [ -x "$f" ] && . "$f"
  done
  unset f
+fi
+
+# Start game
+if [ "$2" = 'oxy' ]; then
+  exec wine ~/usr/get/oxygen_not_included/OxygenNotIncluded.exe
 fi
 
 # Different customization for different os
@@ -42,7 +47,7 @@ elif [ $ID = 'arch' ]; then
 	eval $(ssh-agent | tee ~/.ssh/env)
 fi
 
-if [ "$1" = 'lxde' ]; then
+if [ "$2" = 'lxde' ]; then
   exec startlxde
 fi
 
