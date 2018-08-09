@@ -1,4 +1,7 @@
 # clean .bbl files
 $bibtex_use = 2;
 
+# clean extra files
+push @generated_exts, 'run.xml', 'xdv';
+
 $pdf_previewer = 'start zathura';
