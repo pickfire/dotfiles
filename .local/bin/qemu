@@ -9,12 +9,14 @@
 #    chattr +C .
 #    qemu-img create -f raw win10.raw 10G
 # 2. Download windows
-# 3. Download virtio
+# 3. Download virtio (or pacman -S virtio-win)
 #    aria2c https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/latest-virtio/virtio-win.iso
 # 4. Installation
-#    qemu-system-x86_64 -enable-kvm -smp 2 -m 512M -vga qxl -net nic,model=virtio -boot order=d \
-#      -drive file=win10.img,index=0,media=disk,if=virtio,format=raw,cache=directsync,aio=native \
-#      -drive file=win10.iso,index=2,media=cdrom -drive file=virtio.iso,index=3,media=cdrom
+#    qemu-system-x86_64 -machine type=pc,accel=kvm -m 4G -vga std -soundhw hda \
+#      -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
+#      -net nic,model=virtio -net user,smb=$HOME -device virtio-balloon -boot order=d \
+#      -drive file=win10.img,index=0,media=disk,format=raw,if=virtio,cache=none \
+#      -drive file=win10.iso,index=2,media=cdrom -drive file=virtio-win.iso,index=3,media=cdrom
 # 5. Drivers
 #    - E:\viostor\[your-os]\amd64
 #    - E:\Balloon
@@ -31,13 +33,13 @@
 
 if [ "$1" = "win" -a $# -eq 1 ]; then
 #	apulse32 qemu-system-x86_64 -enable-kvm -m 4096 -vga std -cpu host -smp 2 \
-#		-net nic -net user,smb=$HOME -soundhw hda -balloon virtio \
+#		-net nic -net user,smb=$HOME -soundhw hda -device virtio-balloon \
 #		-drive file=$HOME/act/img/win10.raw,format=raw,cache=none,if=virtio
 
   d=$HOME/act/img/win08
 
   qemu-system-x86_64 -enable-kvm -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
-    -machine type=pc,accel=kvm -m 2G -balloon virtio -soundhw hda \
+    -machine type=pc,accel=kvm -m 2G -device virtio-balloon -soundhw hda \
     -net nic,model=virtio -net user,smb=$HOME \
     -vga virtio -display sdl,gl=on \
     -drive file=$d/win2k8r2.raw,format=raw,if=virtio,aio=native,cache.direct=on \

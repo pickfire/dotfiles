@@ -46,3 +46,6 @@
 #	insteadOf = git://
 [apply]
 	whitespace = fix
+[diff "exif"]
+	textconv = exiftool
+	# cachetextconv = true
