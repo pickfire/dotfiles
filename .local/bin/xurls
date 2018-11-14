@@ -2,8 +2,8 @@
 # Credit: z3bra.org
 
 protocols='[a-zA-Z]*:?//'
-hostchars='[-a-zA-Z0-9._+]+\.[-a-zA-Z0-9._+]+'
-pathchars='[-a-zA-Z0-9._+#=?&:;%/!~@]+'
+hostchars='[-a-zA-Z0-9._+]+'
+pathchars='[-a-zA-Z0-9._+#=?&:;%/!~()]+'
 
 [ -n "$1" ] \
   && grep -aPo "${protocols}${hostchars}${pathchars}" $1 \
