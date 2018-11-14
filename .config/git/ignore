@@ -2,6 +2,7 @@ cscope.in.out
 cscope.out
 cscope.po.out
 tags
+rust-toolchain
 rusty-tags.vi
 rusty-tags.emacs
 *.o
