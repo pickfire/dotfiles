@@ -1,3 +1,8 @@
+@default_files = ('paper.tex');
+
+# generate pdf using xelatex
+$pdf_mode = 5;
+
 # clean .bbl files
 $bibtex_use = 2;
 

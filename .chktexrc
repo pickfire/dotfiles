@@ -1,0 +1,5 @@
+# Exclude these environments
+VerbEnvir { pgfpicture tikzpicture lstlisting }
+
+# Exclude these commants
+WipeArg { \lstinline:{} \lstinputlisting:[]{} }

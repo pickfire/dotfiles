@@ -17,13 +17,16 @@ endif
 call plug#begin('~/.config/nvim/plugged/')
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css'] }
 Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
+Plug 'elzr/vim-json', { 'for': 'json' }
 
 Plug 'mattn/webapi-vim', { 'for': 'rust' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'racer-rust/vim-racer', { 'for': 'rust' }
 
+Plug 'lervag/vimtex', { 'for': ['tex', 'bib'] }
 Plug 'dag/vim-fish', { 'for': 'fish' }
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'ledger/vim-ledger', { 'for': 'ledger' }
@@ -75,12 +78,17 @@ set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
 " ale
 let g:ale_lint_delay = 500
 let g:ale_lint_on_text_changed = 'normal'
-let g:ale_completion_enabled = 1
+let g:ale_linters = { 'tex': ['chktex'] }
 let g:ale_fixers = {
-\  'javascript': ['eslint'],
+\  'javascript': ['eslint', 'importjs'],
 \  'rust': ['rustfmt'],
+\  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_java_javac_classpath = '/home/ivan/usr/uni/oodj/ass/build/classes'
+
+" vimtex
+let g:vimtex_view_automatic = 0
+let g:vimtex_view_method = 'zathura'
 
 " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 " ┃ General                                                                 ┃
@@ -120,6 +128,10 @@ function! HLNext (blinktime)
   redraw
 endfunction
 
+" tex
+let b:tex_stylish = 1
+let g:tex_flavor = 'latex'
+
 " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 " ┃ Key Bindings                                                            ┃
 " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
@@ -130,23 +142,27 @@ tnoremap <ESC><ESC> <C-\><C-n>
 " ┃ Multi-lingual                                                           ┃
 " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
-" plugins
-au FileType c               RainbowParentheses
-au FileType html            IndentGuidesEnable
+" syntax
+au BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+au FileType vue syntax sync fromstart
+
+" plugin
+au FileType c    RainbowParentheses
+au FileType html IndentGuidesEnable
 
 " tags
-au BufRead *.rs :setlocal tags=./rusty-tags.vi;/
-au BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 au BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+au BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
 " filetype
 au BufRead,BufNewFile ~/usr/led/*.dat            setlocal ft=ledger
-au FileType sh,xml,html,vue,*script,liquid,pug   setlocal ts=2 sts=2 sw=2 et
+au FileType sh,*ml,vue,*script,liquid,pug,json   setlocal ts=2 sts=2 sw=2 et
 au FileType py,markdown                          setlocal ts=4 sts=4 sw=4 et
 au FileType help                                 setlocal nospell
 au FileType text,tex,markdown,asciidoc,html      setlocal spell
 au FileType javascript                           setlocal cino=J1
 au FileType java                                 setlocal makeprg=ant\ compile
+au FileType tex                                  setlocal cole=2
 if executable('ctags')
   au BufWritePost *.c,*.h silent! !ctags -R &
 endif
