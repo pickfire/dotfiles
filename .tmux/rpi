@@ -2,6 +2,6 @@ new  -n home -s base
 neww -n mail mailx
 neww -n news newsboat
 neww -n chat irssi
-neww -n logs sh -c 'sudo tail -f /var/log/h2o/* | sed "s/^==>.*$/`tput setaf 2`&`tput sgr0`/"'
+neww -n logs 'sudo sh -c "tail -f /var/log/h2o/*" | sed "s/^==>.*$/\x1b[32m&\x1b[m/"'
 neww -n down -c /srv/nfs
 neww -n wttr watch -n 720 curl http://wttr.in/@pickfire.tk
