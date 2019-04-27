@@ -5,6 +5,7 @@ tags
 rust-toolchain
 rusty-tags.vi
 rusty-tags.emacs
+perf.data*
 *.o
 *.pyc
 *.log

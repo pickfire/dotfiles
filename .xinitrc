@@ -35,7 +35,7 @@ elif [ $ID = 'arch' ]; then
 	#qiv -zr ~/.config/wallpaper/* &
 
   # Set fallback keyboard mapping
-  setxkbmap -layout 'us,us' -variant 'dvorak,dvp' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
+  #setxkbmap -layout 'us,us' -variant 'dvorak,dvp' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
 
 	# Autostart fcitx
 	export GTK_IM_MODULE=fcitx
@@ -104,7 +104,7 @@ stest -flx $PATH | sort -u > $HOME/.cache/dmenu_run
 # Add-on for tiling window managers
 pcmanfm --daemon-mode &
 redshift &
-dwmstatus &
+dwms &
 #dunst &
 #xsnow -nosanta -notrees &
 

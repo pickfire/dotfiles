@@ -16,6 +16,17 @@
 #    - E:\Balloon
 #    - E:\qxldod
 #    - E:\NetKVM
+#
+# Post-installation
+# 1. Disable fast startup
+# 2. Reduce size (CompactOS)
+#    - compact /CompactOS:query
+#    - compact /CompactOS:always
+# 3. Reduce size (hibernation)
+#    - powercfg /h /type reduced
+#    - powercfg /h /off
+# 4. Snapshot (if using qcow2)
+#    - qemu-img snapshot -c base win10.qcow2
 
 # Running
 # 1. Create new bridge

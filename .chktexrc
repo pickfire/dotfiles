@@ -1,5 +1,5 @@
 # Exclude these environments
-VerbEnvir { pgfpicture tikzpicture lstlisting }
+VerbEnvir { pgfpicture tikzpicture lstlisting ganttchart }
 
 # Exclude these commants
 WipeArg { \lstinline:{} \lstinputlisting:[]{} }

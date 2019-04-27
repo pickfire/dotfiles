@@ -1,3 +1,4 @@
 --exchange RM
 --price-db ~/usr/led/pricedb
 --file ~/usr/led/ledger.dat
+--strict

@@ -7,6 +7,6 @@ $pdf_mode = 5;
 $bibtex_use = 2;
 
 # clean extra files
-push @generated_exts, 'run.xml', 'xdv';
+push @generated_exts, 'run.xml', 'xdv', 'synctex.gz';
 
 $pdf_previewer = 'start zathura';
