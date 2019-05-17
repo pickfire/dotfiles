@@ -150,6 +150,10 @@ let g:javascript_plugin_jsdoc = 1
 let b:tex_stylish = 1
 let g:tex_flavor = 'latex'
 
+" jedi-vim
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_first = 0
+
 " ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 " ┃ Key Bindings                                                            ┃
 " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
