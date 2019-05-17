@@ -10,6 +10,9 @@ http://www.voidlinux.eu/atom.xml
 https://alpinelinux.org/atom.xml
 https://www.archlinux.org/feeds/news/
 
+https://blog.rust-lang.org/feed.xml
+https://readrust.net/all/feed.rss
+
 https://blog.torproject.org/blog/feed
 https://neovim.io/news.xml
 http://horriblesubs.info/feed/
@@ -23,7 +26,3 @@ http://natalian.org/index.atom
 https://github.com/BYVoid/OpenCC/commits/master.atom
 https://github.com/soimort/you-get/releases.atom
 https://github.com/madmalik/mononoki/tags.atom
-https://github.com/felixonmars/ydcv/releases.atom
-https://git.kernel.org/pub/scm/git/git.git/atom/Documentation/git.txt?h=maint
-https://github.com/universal-ctags/ctags/releases.atom
-https://github.com/madewokherd/wine-mono/releases.atom
