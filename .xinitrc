@@ -102,7 +102,7 @@ IFS=:
 stest -flx $PATH | sort -u > $HOME/.cache/dmenu_run
 
 # Add-on for tiling window managers
-pcmanfm --daemon-mode &
+#pcmanfm --daemon-mode &
 redshift &
 dwms &
 #dunst &
