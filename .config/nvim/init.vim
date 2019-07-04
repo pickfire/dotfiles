@@ -166,7 +166,6 @@ tnoremap <ESC><ESC> <C-\><C-n>
 " ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 
 " syntax
-au BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
 au FileType vue syntax sync fromstart
 
 " plugin
