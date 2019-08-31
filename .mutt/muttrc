@@ -129,7 +129,6 @@ macro index,pager a "<pipe-message>goobook add<return>" "add sender to google co
 bind editor <Tab> complete-query
 
 # Lists
-subscribe (techlab|trainees|hr)@cloudmails.apu.edu.my
 subscribe (dev|hackers|news|wiki)@suckless.org
 
 #------------------------------------------------------------

@@ -15,6 +15,7 @@ if not set -q fish_initialized
 
 	set -U GOPATH   $HOME/src/go
 	set -U GOROOT   /usr/lib/go
+	set -U ANDROID_SDK_ROOT /opt/android-sdk
 	set -U fish_user_paths ~/.local/bin $PATH
 	set -U TIMEWARRIORDB ~/.task/timew
 
