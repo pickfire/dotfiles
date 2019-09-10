@@ -27,8 +27,7 @@ notify-xterm no               # [yes|no]
 notify-beep yes               # [yes|no]
 
 # Cache
-cache-file "~/.cache/newsbeuter/cache.db"
-cookie-cache "~/.cache/newsbeuter/cookies.txt"
+#cookie-cache "~/.cache/newsbeuter/cookies.txt"
 
 # Notify
 notify-format "%f unread feeds (%n unread articles)"
