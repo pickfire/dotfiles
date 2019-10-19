@@ -83,10 +83,10 @@ xset r rate 150 60
 xset m 2/1 4
 
 # Disable bell
-xset -b &
+#xset -b
 
 # Show mouse
-xsetroot -cursor_name left_ptr &
+#xsetroot -cursor_name left_ptr
 
 # Disable trackpad
 xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Natural Scrolling Enabled' 1

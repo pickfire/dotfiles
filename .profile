@@ -9,7 +9,7 @@ export JAVA_HOME=/usr/lib/jvm/default/
 
 command -v gem >/dev/null && export PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH" GEM_HOME=$HOME/.gem
 command -v dircolors >/dev/null && eval $(dircolors)
-command -v firefox-nightly >/dev/null && export BROWSER=firefox-nightly || export BROWSER=firefox
+command -v firefox-developer-edition >/dev/null && export BROWSER=firefox-developer-edition || export BROWSER=firefox
 
 if command -v rustc >/dev/null
 then
