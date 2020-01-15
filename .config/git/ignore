@@ -14,3 +14,4 @@ perf.data*
 .trigger
 venv/
 .tup/
+.mypy_cache/
