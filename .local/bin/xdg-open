@@ -14,7 +14,7 @@ noproxy() {
   ALL_PROXY=''
 }
 
-for uri in "$@"
+for uri in $(echo "$@" | tr -d $'\n')
 do
   case $uri in
     -h) echo "usage: $(basename $0) uri(s) - separated by space"; exit;;
