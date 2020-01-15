@@ -28,23 +28,25 @@ fi
 . /etc/os-release
 if [ $ID = 'alpine' ]; then
   # Set keyboard mapping
-  setxkbmap -layout 'us,us,us' -variant 'dvorak,dvp,' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
+  #setxkbmap -layout 'us,us,us' -variant 'dvorak,dvp,' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
+  setxkbmap -layout us -variant dvorak -option terminate:ctrl_alt_bksp
+
+  # Swap control keys
+  xmodmap ~/.Xmodmap
 elif [ $ID = 'arch' ]; then
-	#exec startlxde
-	# Random wallpaper
-	#qiv -zr ~/.config/wallpaper/* &
+  #exec startlxde
+  # Random wallpaper
+  #qiv -zr ~/.config/wallpaper/* &
 
   # Set fallback keyboard mapping
   #setxkbmap -layout 'us,us' -variant 'dvorak,dvp' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
 
-	# Autostart fcitx
-	export GTK_IM_MODULE=fcitx
-	export QT_IM_MODULE=fcitx
-	export XMODIFIERS="@im=fcitx"
-	fcitx -r &
+  # Autostart fcitx
+  # fcitx -r &
+  fcitx5 -r &
 
-	# ssh-agent
-	eval $(ssh-agent | tee ~/.ssh/env)
+  # ssh-agent
+  eval $(ssh-agent | tee ~/.ssh/env)
 fi
 
 if [ "$2" = 'lxde' ]; then

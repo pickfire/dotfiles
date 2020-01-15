@@ -1,0 +1,41 @@
+[Hotkey]
+# Alternative Trigger Input Method
+AltTriggerKeys=
+# Enumerate Input Method Group Forward
+EnumerateGroupForwardKeys=
+
+[Hotkey/TriggerKeys]
+0=Super+space
+
+[Hotkey/EnumerateForwardKeys]
+
+[Hotkey/EnumerateBackwardKeys]
+
+[Hotkey/EnumerateGroupBackwardKeys]
+
+[Hotkey/ActivateKeys]
+0=Hangul_Hanja
+
+[Hotkey/DeactivateKeys]
+0=Hangul_Romaja
+
+[Hotkey/PrevPage]
+0=Up
+
+[Hotkey/NextPage]
+0=Down
+
+[Behavior]
+# Active By Default
+ActiveByDefault=False
+# Show Input Method Information when switch input method
+ShowInputMethodInformation=True
+# Show Input Method Information when changing focus
+showInputMethodInformationWhenFocusIn=False
+# Default page size
+DefaultPageSize=5
+# Force Enabled Addons
+EnabledAddons=
+# Force Disabled Addons
+DisabledAddons=
+
