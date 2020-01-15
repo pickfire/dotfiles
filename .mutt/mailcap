@@ -23,6 +23,7 @@ application/ods; libreoffice %s
 application/msword; libreoffice %s
 #application/msword; antiword '%s'; copiousoutput; description=Word Document; nametemplate=%s.doc
 application/vnd.oasis.opendocument.text; libreoffice %s
+application/vnd.openxmlformats-officedocument.wordprocessingml.document; wps %s
 
 # Compressed files
 application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
