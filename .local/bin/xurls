@@ -1,5 +1,6 @@
 #!/bin/sh
 # Credit: z3bra.org
+# https://github.com/LukeSmithxyz/st/blob/master/config.h#L215
 
 protocols='[a-zA-Z]*:?//'
 hostchars='[-a-zA-Z0-9._+]+'
