@@ -77,7 +77,7 @@ set message_cachedir = "~/.cache/mail/" #+ speed things up.
 # Compose
 #------------------------------------------------------------
 
-set fcc_attach                       # save attachments with the body
+set fcc_attach                   # save attachments with the body
 set signature = "~/.mutt/sig/me" # add signature
 
 # Reply
