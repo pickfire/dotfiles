@@ -34,7 +34,6 @@ if [ $ID = 'alpine' ]; then
   # Swap control keys
   xmodmap ~/.Xmodmap
 elif [ $ID = 'arch' ]; then
-  #exec startlxde
   # Random wallpaper
   #qiv -zr ~/.config/wallpaper/* &
 
@@ -84,6 +83,9 @@ xset r rate 150 60
 # Mouse acceleration
 xset m 2/1 4
 
+# Lower volume bell
+xset b 1 3 10000
+
 # Disable bell
 #xset -b
 
@@ -107,8 +109,21 @@ stest -flx $PATH | sort -u > $HOME/.cache/dmenu_run
 #pcmanfm --daemon-mode &
 redshift &
 dwms &
-#dunst &
+dunst &
 #xsnow -nosanta -notrees &
 
-# Use dwm as default
-exec dwm 2>/tmp/dwm.log || clear
+# Use dwm as default (restart if binary changes)
+csum=$(sha1sum $(which dwm))
+new_csum=""
+while true
+do
+	if [ "$csum" != "$new_csum" ]
+	then
+		csum=$new_csum
+		dwm 2>/tmp/dwm.log
+	else
+		exit 0
+	fi
+	new_csum=$(sha1sum $(which dwm))
+	sleep 0.5
+done
