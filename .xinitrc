@@ -101,6 +101,9 @@ xinput disable 'SynPS/2 Synaptics TouchPad'
 #xiccd &
 #dispwin -c /usr/share/color/icc/TPLCD.icm &
 
+# Listen to new events
+autorandr-launcher -d
+
 # Reset dmenu's cache
 IFS=:
 stest -flx $PATH | sort -u > $HOME/.cache/dmenu_run
