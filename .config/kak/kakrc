@@ -1,0 +1,6 @@
+# enable language server protocol (requires kak-lsp)
+eval %sh{kak-lsp --kakoune -s $kak_session}
+lsp-enable
+
+# theme works well with dark theme on low backlight
+colorscheme red-phoenix
