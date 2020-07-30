@@ -2,7 +2,7 @@
 application/pdf+=zathura-pdf-poppler.desktop;zathura-pdf-mupdf.desktop;
 text/x-matlab=leafpad.desktop;
 text/plain=l3afpad.desktop;nvim.desktop;emacs.desktop;gvim.desktop;leafpad.desktop;
-image/png=inkscape.desktop;qiv.desktop;feh.desktop;sxiv.desktop;
+image/png=firefox-developer-edition.desktop;inkscape.desktop;qiv.desktop;feh.desktop;sxiv.desktop;
 image/jpeg=qiv.desktop;feh.desktop;sxiv.desktop;
 text/html=firefox.desktop;chromium.desktop;opera.desktop;inox.desktop;tor-browser.desktop;elinks.desktop;
 x-scheme-handler/https=firefox.desktop;chromium.desktop;opera.desktop;inox.desktop;tor-browser.desktop;elinks.desktop;
@@ -26,6 +26,9 @@ application/rls-services+xml=nvim.desktop;
 text/markdown=l3afpad.desktop;nvim.desktop;
 application/vnd.openxmlformats-officedocument.presentationml.presentation=wps-office-wpp.desktop;
 application/json=l3afpad.desktop;
+text/x-python=l3afpad.desktop;
+application/zip=wps-office-wps.desktop;
+text/vnd.qt.linguist=l3afpad.desktop;
 
 [Default Applications]
 application/directory=pcmanfm.desktop
