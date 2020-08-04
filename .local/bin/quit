@@ -3,7 +3,7 @@
 
 boot() { sudo reboot; }
 lock() { xset dpms force off; xautolock -locknow; }
-quit() { pkill X; }
+quit() { pkill dwm; }
 shut() { sudo poweroff; }
 zzzz() { command -v zzz && sudo zzz || sudo suspend; }
 ZZZZ() { command -v ZZZ && sudo ZZZ || sudo hibernate; }
