@@ -53,4 +53,3 @@ x-scheme-handler/postman=Postman.desktop
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=wps-office-wps.desktop;
 x-scheme-handler/msteams=teams-for-linux.desktop
 x-scheme-handler/discord-610508934456934412=discord-610508934456934412.desktop
-x-schema-handler/msteams=teams.desktop
