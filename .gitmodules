@@ -1,0 +1,3 @@
+[submodule "/home/ivan/.local/share/fcitx5/themes/dwm"]
+	path = /home/ivan/.local/share/fcitx5/themes/dwm
+	url = https://github.com/pickfire/fcitx5-dwm-theme
