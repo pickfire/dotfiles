@@ -29,7 +29,7 @@ fi
 if [ $ID = 'alpine' ]; then
   # Set keyboard mapping
   #setxkbmap -layout 'us,us,us' -variant 'dvorak,dvp,' -option 'compose:ralt,ctrl:swapcaps,grp:rctrl_rshift_toggle,terminate:ctrl_alt_bksp'
-  setxkbmap -layout us -variant dvorak -option terminate:ctrl_alt_bksp
+  setxkbmap -layout us -variant dvorak -option caps:swapcaps,ctrl:swap_lalt_lctl,terminate:ctrl_alt_bksp
 
   # Swap control keys
   xmodmap ~/.Xmodmap
@@ -111,7 +111,7 @@ stest -flx $PATH | sort -u > $HOME/.cache/dmenu_run
 # Add-on for tiling window managers
 #pcmanfm --daemon-mode &
 redshift &
-dwms &
+systembus-notify &  # earlyoom
 dunst &
 #xsnow -nosanta -notrees &
 
@@ -123,6 +123,7 @@ do
 	if [ "$csum" != "$new_csum" ]
 	then
 		csum=$new_csum
+		dwms &
 		dwm 2>/tmp/dwm.log
 	else
 		exit 0
