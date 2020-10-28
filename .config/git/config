@@ -9,7 +9,6 @@
 [core]
 	whitespace = trailing-space
 	autocrlf = input
-	editor = nvim
 [help]
 	autocorrect = 3
 [color]
@@ -28,6 +27,7 @@
 	tool = vimdiff
 [diff]
 	tool = vimdiff
+	# noprefix = true
 [mergetool]
 	prompt = true
 [difftool]
@@ -36,12 +36,19 @@
 	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
 [push]
 	default = simple
-[url "ssh://ivan@pickfire.tk:4121/srv/git/"]
+# [url "ssh://ivan@pickfire.tk:4121/srv/git/"]
+[url "ssh://ivan@192.168.1.122/srv/git/"]
 	insteadOf = home:
 [url "git@github.com:"]
 	insteadOf = gh:
+[url "git@github.com:pickfire"]
+	insteadOf = https://github.com/pickfire
 [url "git@bitbucket.org:"]
 	insteadOf = bb:
+[url "git@code.aset.gov.my:"]
+	insteadOf = https://code.aset.gov.my/
+[url "git@semut-io.gitlab.com:semut-technologies"]
+	insteadOf = https://gitlab.com/semut-technologies
 #[url "http://"]
 #	insteadOf = git://
 [apply]
@@ -56,3 +63,5 @@
 	required = true
 [rerere]
 	enabled = true
+[pull]
+	rebase = false
