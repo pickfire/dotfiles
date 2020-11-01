@@ -15,6 +15,8 @@ set folder    = imaps://foo@mail.riseup.net/
 set spoolfile = +INBOX
 set postponed = +Drafts
 set record    = +Sent
+unset mailboxes
+set imap_check_subscribed
 
 # Send
 set smtp_url  = smtps://$imap_user@smtp.riseup.net/
@@ -25,6 +27,7 @@ set ssl_force_tls = yes
 set ssl_starttls = yes
 
 # Hook
+account-hook $folder "set imap_user=$imap_user imap_pass=$imap_pass"
 folder-hook $folder "source 'gpg -dq ~/.mutt/pass.gpg 2>/dev/null |'"
 
 # vim:ft=muttrc:

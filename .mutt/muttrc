@@ -13,7 +13,7 @@
 # General
 #------------------------------------------------------------
 
-set editor       = "nvim"
+#set editor       = "kak"      # use default $EDITOR
 set ispell       = "/usr/bin/aspell -e -c" # use aspell as ispell
 set send_charset = "utf-8"    # utf-8 is the standard
 set mailcap_path = ~/.mutt/mailcap
@@ -107,8 +107,8 @@ set dsn_return=hdrs                  # just show the header
 #------------------------------------------------------------
 
 # Accounts
-source "gpg -dq ~/.mutt/pass1.gpg 2>/dev/null |"
-source "gpg -dq ~/.mutt/pass3.gpg 2>/dev/null |"
+# source "gpg -dq ~/.mutt/pass1.gpg 2>/dev/null |"
+# source "gpg -dq ~/.mutt/pass3.gpg 2>/dev/null |"
 source "gpg -dq ~/.mutt/pass2.gpg 2>/dev/null |"
 
 macro index,pager <f2> '<sync-mailbox><enter-command>source "gpg -dq ~/.mutt/pass1.gpg 2>/dev/null |"<enter><change-folder>!<enter>'
