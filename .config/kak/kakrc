@@ -1,6 +1,93 @@
+# plug
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+plug "andreyorst/plug.kak" noload
+plug "andreyorst/fzf.kak" defer fzf %{
+    set-option global fzf_implementation "sk"
+} demand
+plug "andreyorst/smarttab.kak" defer smarttab %{
+    hook global WinSetOption filetype=yaml softtabstop 2
+    hook global WinSetOption filetype=html softtabstop 4
+} config %{
+    hook global WinSetOption filetype=(rust|markdown|kak|lisp|scheme|sh|perl|yaml) expandtab
+    hook global WinSetOption filetype=(makefile|gas) noexpandtab
+    hook global WinSetOption filetype=(c|cpp) smarttab
+}
+
 # enable language server protocol (requires kak-lsp)
 eval %sh{kak-lsp --kakoune -s $kak_session}
 lsp-enable
+lsp-auto-hover-enable
+# set-option global lsp_cmd "kak-lsp -s %val{session} -vvv --log /tmp/kak-lsp.log"
 
-# theme works well with dark theme on low backlight
-colorscheme red-phoenix
+# yaml language server (kubernetes)
+# hook global WinSetOption filetype=yaml %{
+#     set-option global lsp_server_configuration yaml.completion="true"
+#     set-option global lsp_server_configuration yaml.hover="true"
+#     set-option global lsp_server_configuration yaml.schemas.kubernetes="https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.1-standalone-strict/all.json"
+# }
+
+# declare-option -hidden str modeline_progress ""
+# define-command -hidden -params 4 -override lsp-handle-progress %{
+#     set-option global modeline_progress %sh{
+#         echo $1${2:+": $2"}${3:+" $3%"}${4:+" ✓"}
+#     }
+# }
+
+# user mode
+map global user l -docstring 'lsp' ':enter-user-mode lsp<ret>'
+map global user f -docstring 'fzf' ':fzf-mode<ret>'
+
+# comment
+map global normal '#' :comment-line<ret> -docstring 'comment line'
+map global normal '<a-#>' :comment-block<ret> -docstring 'comment block'
+
+# editorconfig
+hook global WinCreate ^[^*]+$ %{editorconfig-load}
+
+# formatter
+hook global WinSetOption filetype=rust %{
+    # set-option buffer autowrap_fmtcmd 'fmt -s -p// -w %c'
+
+    # inlay hints
+    #hook window -group rust-inlay-hints BufReload .* rust-analyzer-inlay-hints
+    #hook window -group rust-inlay-hints NormalIdle .* rust-analyzer-inlay-hints
+    #hook window -group rust-inlay-hints InsertIdle .* rust-analyzer-inlay-hints
+    #hook -once -always window WinSetOption filetype=.* %{
+    #    remove-hooks window rust-inlay-hints
+    #}
+
+    autowrap-enable
+    map buffer user c -docstring 'cargo' ':enter-user-mode cargo<ret>'
+}
+
+# ctags
+hook global KakBegin .* %{
+    evaluate-commands %sh{
+        path="$PWD"
+        while [ "$path" != "$HOME" ] && [ "$path" != "/" ]; do
+            if [ -e "./tags" ]; then
+                printf "%s\n" "set-option -add current ctagsfiles %{$path/tags}"
+                break
+            else
+                cd ..
+                path="$PWD"
+            fi
+        done
+    }
+}
+
+# 2 spaces languages
+hook global WinSetOption filetype=(html|sh|yaml) %{
+    set-option buffer indentwidth 2
+}
+
+# terminal
+hook global ModuleLoaded x11 %{
+    set-option global termcmd 'st -e sh -c'
+}
+
+# middle-click paste
+# hook global RawKey <mouse:press:middle:.*> exec !xclip<space>-o<ret>
+
+colorscheme tomorrow-night
