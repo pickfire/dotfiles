@@ -1,17 +1,26 @@
 [Hotkey]
-# Alternative Trigger Input Method
-AltTriggerKeys=
+# Enumerate when press trigger key repeatedly
+EnumerateWithTriggerKeys=True
+# Skip first input method while enumerating
+EnumerateSkipFirst=False
 # Enumerate Input Method Group Forward
 EnumerateGroupForwardKeys=
+# Enumerate Input Method Group Backward
+EnumerateGroupBackwardKeys=
 
 [Hotkey/TriggerKeys]
 0=Super+space
+1=Zenkaku_Hankaku
+2=Hangul
+
+[Hotkey/AltTriggerKeys]
+0=Shift_L
 
 [Hotkey/EnumerateForwardKeys]
+0=Super+space
 
 [Hotkey/EnumerateBackwardKeys]
-
-[Hotkey/EnumerateGroupBackwardKeys]
+0=Shift+Super+space
 
 [Hotkey/ActivateKeys]
 0=Hangul_Hanja
@@ -25,9 +34,22 @@ EnumerateGroupForwardKeys=
 [Hotkey/NextPage]
 0=Down
 
+[Hotkey/PrevCandidate]
+0=Shift+Tab
+
+[Hotkey/NextCandidate]
+0=Tab
+
+[Hotkey/TogglePreedit]
+0=Control+Alt+P
+
 [Behavior]
 # Active By Default
 ActiveByDefault=False
+# Share Input State
+ShareInputState=No
+# Show preedit in application
+PreeditEnabledByDefault=True
 # Show Input Method Information when switch input method
 ShowInputMethodInformation=True
 # Show Input Method Information when changing focus
@@ -38,4 +60,6 @@ DefaultPageSize=5
 EnabledAddons=
 # Force Disabled Addons
 DisabledAddons=
+# Preload input method to be used by default
+PreloadInputMethod=True
 
