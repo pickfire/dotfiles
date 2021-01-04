@@ -9,6 +9,7 @@
 [core]
 	whitespace = trailing-space
 	autocrlf = input
+	pager = delta
 [help]
 	autocorrect = 3
 [color]
@@ -28,6 +29,8 @@
 [diff]
 	tool = vimdiff
 	# noprefix = true
+[interactive]
+	diffFilter = delta --color-only
 [mergetool]
 	prompt = true
 [difftool]
@@ -65,3 +68,5 @@
 	enabled = true
 [pull]
 	rebase = false
+[submodule]
+	fetchJobs = 0
